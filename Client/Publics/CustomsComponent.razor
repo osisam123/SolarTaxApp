@@ -1,0 +1,207 @@
+﻿@layout PlainLayout
+@page "/customs"
+
+@using SolarTaxApp.Client.ViewModels
+@inject StateContainer stateContainer
+
+<center>
+    <div class="col-7" style="text-align:justify;">
+        <h4 style="text-align:left; color:rgb(33, 170, 153);">Customs Duties (import procedures and required documents)</h4>
+        <br />
+
+
+        <p>Customs duty is levied on goods imported or exported from the EAC at specific or ad valorem rates. The East African Community Customs Management Act 2004 (EACCMA, 2004), the East African Community Common External Tariff (EAC CET) form part of the legal framework for customs operations in the region as a whole. Solar energy technology has been evolving over time and (with many new products and combinations of products) this has posed a challenge in the classification and hence taxation of these products. Due to the changing technology, some importers have been taxed inconsistently even when the government policy is to promote the use of renewable energy</p>
+        <div>
+            <h5 class="titleColor">Documents required for Customs Duties</h5>
+            <p style="text-align:justify;">The following documents are required for purposes of importing of goods, valuation of imported goods and rates of duty:</p>
+        </div>
+        @if (stateContainer.FocusCodeProperty == "UG")
+        {
+            <div style="text-align:justify;">
+                <h5 class="titleColor">Uganda</h5>
+                <ol type="a">
+                    <li>A bill of lading or airway bill;</li>
+                    <li>An insurance certificate;</li>
+                    <li>Commercial invoices;</li>
+                    <li>A Certificate of Origin;</li>
+                    <li>Permits for restricted goods;</li>
+                    <li>Purchase order;</li>
+                    <li>Packing list;</li>
+                    <li>Sales contract; and,</li>
+                    <li>Any other supporting documents.</li>
+                </ol>
+            </div>
+        }
+
+
+
+        @if (stateContainer.FocusCodeProperty == "KY")
+        {
+            <div style="text-align:justify;">
+                <h5 class="titleColor">Kenya</h5>
+                <ol type="a">
+                    <li>Original commercial invoice;</li>
+                    <li>Original bill of lading;</li>
+                    <li>Import Declaration Form obtained from Customs;</li>
+                    <li>Certificate of Inspection;</li>
+                    <li>Packing list;</li>
+                    <li>Any other document that may be required by Customs.</li>
+                </ol>
+            </div>
+        }
+        @if (stateContainer.FocusCodeProperty == "TZ")
+        {
+            <div style="text-align:justify;">
+                <h5 class="titleColor">Tanzania</h5>
+                <ol type="a">
+                    <li>Final invoice;</li>
+                    <li>Agent’s authorization letter from the importer;</li>
+                    <li>Import permits from TBS;</li>
+                    <li>Exemption documents (If applicable);</li>
+                    <li>Packing List;</li>
+                    <li>Transport documents i.e Bill of Lading/Airway Bill/Road Consignment note.</li>
+                </ol>
+            </div>
+        }
+        @if (stateContainer.FocusCodeProperty == "RW")
+        {
+            <div style="text-align:justify;">
+                <h5 class="titleColor">Rwanda</h5>
+                <ol type="a">
+                    <li>Original commercial invoice</li>
+                    <li>Original bill of lading;</li>
+                    <li>Import Declaration Form obtained from Customs;</li>
+                    <li>Any other document that may be required by Customs</li>
+                </ol>
+            </div>
+        }
+
+        @if (stateContainer.FocusCodeProperty == "BI")
+        {
+            <div style="text-align:justify;">
+                <h5 class="titleColor">Burundi</h5>
+                <ol type="a">
+                    <li>Original bill of lading or airway bill</li>
+                    <li>Original commercial invoice and packing list</li>
+                    <li>Transit clearance documents</li>
+                    <li>Certificate of conformity</li>
+                    <li>Certificate of origin</li>
+                    <li>Import declaration form</li>
+                    <li>Import license</li>
+                </ol>
+            </div>
+        }
+
+        @if (stateContainer.FocusCodeProperty == "SS")
+        {
+            <div style="text-align:justify;">
+                <h5 class="titleColor">South Sudan </h5>
+                <ol type="a">
+                    <li>Original bill of lading or airway bill</li>
+                    <li>Original commercial invoice and packing list</li>
+                    <li>Import license for restricted items</li>
+                    <li>Certificate of Conformity</li>
+                    <li>Certificate of Origin</li>
+                </ol>
+            </div>
+        }
+
+
+        <div style="text-align:justify;">
+            <h5 class="titleColor">Valuation of imported Goods</h5>
+            <p>Goods imported into the EAC must be valued for taxation purposes i.e. a customs value must be determined. The customs value forms the basis for computation of customs duties which include import duty, Value Added Tax, Withholding tax, Excise duty and other duties e.g. Environmental levy, Infrastructure levy. Import Declaration fees, African Union Levy and others. Applicable tax rates are defined in the Customs External Tariff (CET). Goods are valued using the following methods adopted by GATT (General Agreement on Tariff and Trade) and applied chronologically</p>
+
+            <ol type="a">
+                <li>Transaction value;</li>
+                <li>Transaction value of identical goods;</li>
+                <li>Transaction value of similar goods;</li>
+                <li>Deductive value;</li>
+                <li>Computed value; and</li>
+                <li>Fall back value.</li>
+            </ol>
+        </div>
+
+
+        <div style="text-align:justify;">
+            <h5 class="titleColor">Rates of duty</h5>
+            <p>Generally, the following rates will apply to an import of goods from outside the community:</p>
+            @if (stateContainer.FocusCodeProperty == "UG")
+            {
+                <h5 class="titleColor">Uganda</h5>
+                <ol type="a">
+                    <li>Import Duty – 0% - 25%</li>
+                    <li>VAT - 18%</li>
+                    <li>WHT - 6%</li>
+                    <li>Infrastructure levy – 1.5%</li>
+                    <li>Environmental levy - Varies and charged on second hand imports</li>
+                </ol>
+            }
+            @if (stateContainer.FocusCodeProperty == "KY")
+            {
+                <h5 class="titleColor">Kenya</h5>
+                <ol type="a">
+                    <li>Import Duty – 0% - 25%</li>
+                    <li>VAT - 14%</li>
+                    <li>Railway Development Levy (RDL) - 2%</li>
+                    <li>IDF - 1.5% - 3.5% Additional 2.5% duty on goods purchased from EPZs</li>
+                </ol>
+            }
+            @if (stateContainer.FocusCodeProperty == "TZ")
+            {
+                <h5 class="titleColor">Tanzania</h5>
+                <ol type="a">
+                    <li>Import Duty - 0% - 25%</li>
+                    <li>VAT - 18%</li>
+                    <li>Infrastructure levy -1.5%</li>
+                    <li>IDF - 2.25</li>
+                </ol>
+            }
+            @if (stateContainer.FocusCodeProperty == "RW")
+            {
+                <h5 class="titleColor">Rwanda</h5>
+                <ol type="a">
+                    <li>Import Duty - 0% - 25%</li>
+                    <li>VAT - 18%</li>
+                    <li>Infrastructure levy - 1.5%</li>
+                    <li>AUL - 0.2%</li>
+                    <li>QIF - 0.2%</li>
+                </ol>
+            }
+
+            @if (stateContainer.FocusCodeProperty == "BI")
+            {
+                <h5 class="titleColor">Burundi</h5>
+                <ol type="a">
+                    <li>Import Duty-0 %, 10 % or 25 %</li>
+                    <li>VAT - 18 %</li>
+                    <li>Infrastructure levy-1.5 %</li>
+                    <li>A fixed levy (WHT) of 3 % of the CIF, as a down payment for income tax, on imports into Burundi</li>
+                    <li>A safety tax of 1.15 % on the value of imported goods</li>
+                    <li>A lump-sum payment of BIF 10 000 on customs clearing agencies</li>
+                    <li>An anti-pollution tax of BIF 2 million per vehicleon imported vehicles older than 10 years </li>
+                    <li>An ad valorem tax of 50 % on the customs value of imported plastic bags</li>
+                </ol>
+            }
+
+            @if (stateContainer.FocusCodeProperty == "SS")
+            {
+                <h5 class="titleColor">South Sudan</h5>
+                <ol type="a">
+                    <li>Import Duty-0 %, 10 % or 25 %</li>
+                    <li>VAT - 18 % </li>
+                    <li>Infrastructure levy-1.5 % </li>
+                    <li>National Bureau of Standards inspection fees e.g. for solar batteries it is 5 % of customs value.e) Ministry of Trade fees for solar telecom equipment SSP 5000 per ton </li>
+                    <li>Ministry of Trade fees for electronics and accessories SSP 300 per ton </li>
+                    <li>Ministry of trade fees for spare parts SSP 300 per ton</li>
+                    <li>Ministry of trade fees for small generators SSP 3000 and SSP 6000 for big generator</li>
+                </ol>
+            }
+
+        </div>
+    </div>
+</center>
+
+
+@code {
+
+}

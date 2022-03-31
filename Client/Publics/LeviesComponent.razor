@@ -1,0 +1,38 @@
+﻿@layout PlainLayout
+@page "/levies"
+
+@using SolarTaxApp.Client.ViewModels
+@inject StateContainer stateContainer
+<center>
+    <div class="col-7">
+        <h4 style="text-align:left; color:rgb(33, 170, 153);">Levies and other Import Declaration Fee</h4>
+        
+            <div class="col-4 col-md">
+                <h5 class="titleColor">Infrastructure levy/Railway Development Levy or Industrial Development Levy</h5>
+                <p style="text-align:justify;">This is a levy that is imposed on goods imported from outside the East African Community (EAC). It is levied in all the partner states in order to collect funds needed for regional infrastructure projects. This levy is not applicable on goods orignating from EAC as well as on the goods exempted under the Fifth Schedule to the EAC Customs Management Act, 2004 (EACCMA, 2004)</p>
+            </div>
+        @if (stateContainer.FocusCodeProperty == "KY")
+        {
+            <div class="col-4 col-md">
+                <h5 class="titleColor">Import Declaration Fees (Kenya only)</h5>
+                <p style="text-align:justify;">This is charged at importation in Kenya - the Import Declaration Fees are 2.25% of the Customs Value of the imported items and the fees are regarded as processing fees for declaring the details of imported items.</p>
+            </div>
+
+        }
+         @if (stateContainer.FocusCodeProperty == "RW")
+         {
+            <div class="col-4 col-md">
+                <h5 class="titleColor">African Union Levy and Quality Inspection Levy (Rwanda only)</h5>
+                <p style="text-align:justify;">These are charged in Rwanda on all imported goods except those listed as exempt. The African Union Levy is 0.2%. Additionally, imported goods, regardless of whether they are exempted, are subject to a 0.2% Quality Inspection Fee (QIF). The levies are computed on the customs value of imported goods</p>
+            </div>
+         }
+            
+        
+    </div>
+</center>
+
+
+
+@code {
+
+}

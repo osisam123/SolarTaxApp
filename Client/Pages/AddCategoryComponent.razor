@@ -1,0 +1,122 @@
+﻿@page "/addcategory"
+@using SolarTaxApp.Client.ViewModels
+@inject ICategoryViewModel CategoryViewModel
+@using BlazorInputFile
+@using System.IO
+
+<h5>Add Category</h5>
+<div class="col-9">
+    <EditForm Model="category" OnSubmit="Submit">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary></ValidationSummary>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="SeedType" class="control-label">
+                            Category Name
+                        </label>
+                    </td>
+                    <td>
+                        <InputText id="SeedType" @bind-Value="category.Categoryname" class="form-control"></InputText>
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td>
+                        <label for="description" class="control-label">
+                            Category Description
+                        </label>
+                    </td>
+                    <td>
+                        <InputText id="description" @bind-Value="category.CategoryDescription" class="form-control"></InputText>
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td>
+                        <label for="Seedsource" class="control-label">
+                            Category Image
+                        </label>
+                    </td>
+                    <td>
+                        <InputFile OnChange="@OnInputFileChange" class="form-control" />
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Save" class="btn btn-primary col-4" />
+                        &#8194;
+                        <button type="button" class="btn btn-warning col-4"
+                                @onclick="() => Cancel()">
+                            &#8194;&#8201;Cancel&#8201;&#8194;
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </EditForm>
+    <br />
+    <br />
+</div>
+@if (DialogIsOpen)
+{
+    <Popup Caption="Add Category"
+           Message="@message"
+           OnClose="@OnDialogClose"
+           Type="Popup.Category.Okay">
+    </Popup>
+}
+
+@code {
+
+    private Category category { get; set; }
+    private byte[] ImgUploaded { set; get; }
+
+    private string firstName;
+    private string message;
+    private bool DialogIsOpen = false;
+
+    protected override void OnInitialized()
+    {
+        category = new Category();
+    }
+    private async Task OnInputFileChange(IFileListEntry[] files)
+    {
+        var file = files.FirstOrDefault();
+        if (file != null)
+        {
+            var ms = new MemoryStream();
+            await file.Data.CopyToAsync(ms);
+            ImgUploaded = ms.ToArray();
+            category.Imageurl = $"data:image/png;base64,{Convert.ToBase64String(ImgUploaded)}";
+        }
+    }
+
+    private void Cancel()
+    {
+
+    }
+
+    private async Task Submit()
+    {
+        CategoryViewModel.Category = category;
+        var resp = await CategoryViewModel.InsertCategory();
+        if (resp)
+        {
+            OpenDialog();
+        }
+    }
+    private void OpenDialog()
+    {
+        DialogIsOpen = true;
+        message = "Category Saved";
+        category = new Category();
+    }
+    private void OnDialogClose(bool isOk)
+    {
+        DialogIsOpen = false;
+    }
+}

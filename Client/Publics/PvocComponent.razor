@@ -1,0 +1,39 @@
+﻿@layout PlainLayout
+@page "/pvoc"
+@using SolarTaxApp.Client.ViewModels
+@inject StateContainer stateContainer
+
+    <center>
+        
+        <div class="col-7">
+            <h3 class="colorBlue">Pre-Export Verification of Conformity (PVoC)</h3>
+            @if (stateContainer.FocusCodeProperty == "UG")
+            {
+                <h5 class="titleColor" style="text-align:justify;">Uganda</h5>
+                <p style="text-align:justify;">Uganda also has Pre-Export Verification of Conformity (PVoC) Requirements.</p>
+                <p style="text-align:justify;">PVoC is an inspection and verification programme carried out on goods by appointed inspection agents in the country of export. Verification of compliance to technical regulations and standards is provided for in Article 5 of the World Organization (WTO) Agreement on Technical Barriers to Trade (TBT).</p>
+                <p style="text-align:justify;">The objective of PVoC is to minimize the risk of unsafe and substandard goods entering Uganda and protect consumers against dangerous, shoddy and substandard imported products.</p>
+                <p style="text-align:justify;">Group 2 of the list of products under compulsory standards subject to the PVoC programme are the electrical and electronics including all solar equipment and all sorts of equipment relating to, producing or operated by electricity.</p>
+                <h5 class="titleColor" style="text-align:justify;">PVoC for Exports to Uganda</h5>
+                <p style="text-align:justify;">Exportation to Uganda now requires a Certificate of Conformity for products regulated under the Uganda Pre-Export Verification of Conformity to Standards Programme (PVoC)</p>
+                <p style="text-align:justify;">To assure the customers of solar products about the quality and safety of imported goods, the Government of Uganda through the Uganda National Bureau of Standards (UNBS) has implemented a series of guidelines known as a Pre-Export Verification of Conformity to Standards Programme (PVoC)</p>
+                <p style="text-align:justify;">The PVoC verifies the conformity of all regulated products and enforces their standards. Compliance to PVoC requirements are applicable in addition to any existing import processes. Every consignment of regulated products exported to Uganda must have a Certificate of Conformity.</p>
+                <p style="text-align:justify;">UNBS is responsible for the adoption and application of the standards for both imported and domestically manufactured products in the Ugandan market. The PVoC Standards Programme is a conformity assessment and verification procedure applied to specific goods/products at the respective exporting countries, to ensure their compliance with the applicable Ugandan Technical Regulations and Mandatory Standards or approved equivalents</p>
+                <p style="text-align:justify;">The importer’s responsibility is to ensure that their suppliers are conversant with import quality requirements and that their consignments are accompanied with a Certificate of Conformity (CoC) from the authorized PVoC Agent</p>
+                <p style="text-align:justify;">The exporter’ responsibility is to ensure that their products or goods meet the regulations and quality requirements of Uganda before shipment by obtaining the necessary Certificate of Conformity (CoC) from the authorized PVoC Service Provider for all products subject to the PVoC programme.</p>
+                <p style="text-align:justify;">In Uganda, authorised PVoC service producers include Intertek International and SGS Uganda Limited.</p>
+            }
+            @if (stateContainer.FocusCodeProperty == "KY")
+            {
+                <h5 class="titleColor" style="text-align:justify;">Kenya</h5>
+                <p style="text-align:justify;">In Kenya the PVoC program was started on 29th September 2005 by KEBS, through the publication of Legal Notice No. 78 of 15th July, 2005 by the Minister for Trade and Industry. The program is also fully compliant with the provisions of Article 5 of WTO TBT Agreement.</p>
+                <p style="text-align:justify;">The objectives of the PVoC are to ensure quality of products, health and safety, and environmental protection for consumers and to safeguard the country from unfair trade practices and dumping of substandard goods.</p>
+                <p style="text-align:justify;">For solar products in Kenya KEBS/TC 092/SC 02 (TC Number) Solar and Wind Technologies (TC Name) are listed under KEBS Committees under the electro technical department.</p>
+                <p style="text-align:justify;">Exporters should ensure their products or goods meet the regulations and quality requirements of Kenya before shipment by carrying out tests based on relevant Kenya Standards or approved specifications and/or obtaining the necessary Certificate of Conformity (CoC) from the appointed PVoC Partners for all products subject to the PVoC program.</p>
+                <p style="text-align:justify;">Approved PVoC Partners by KEBS Include: Bureau Veritas, Cotecna, China Certification & Inspection (Group) Inspection Co. Ltd, Intertek International, SGS and QISJ. The role of these partners is to undertake conformity assessment activities in the country of origin for products being imported into Kenya. These activities include inspection, sampling, testing, sealing of full-load containers and issuance of COCs / COIs / CORs/NCR.</p>
+            }
+        </div>
+    </center>
+    @code {
+
+    }

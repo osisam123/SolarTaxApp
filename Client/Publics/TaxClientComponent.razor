@@ -1,0 +1,220 @@
+﻿@layout PlainLayout
+@page "/searchtax"
+@using SolarTaxApp.Client.ViewModels
+@inject IStateTaxViewModel stateTaxViewModel
+@inject ICategoryViewModel categoryViewMode
+@inject IClassificationViewModel classificationViewModel
+@inject ITaxViewModel taxViewModel
+@inject IStateViewModel stateViewModel
+@implements IDisposable
+@inject StateContainer StateContainer
+@inject NavigationManager navigationManager
+
+<center>
+    <div class="col-12">
+        @if (stateViewModel.Countries == null)
+        {
+            
+        }
+        else
+        {
+        <div class="row">
+            <div class="col-3">
+                <select @bind="Country.Stateid" class="form-control">
+                    <option value="">Select Country/State</option>
+                    @foreach (var dstate in stateViewModel.Countries)
+                    {
+                        <option value="@dstate.Stateid">@dstate.Statename</option>
+                    }
+                </select>
+            </div>
+            <div class="col-3">
+                <select @bind="tax_.Taxid" class="form-control">
+                    <option value="">Select Tax Type</option>
+                    @foreach (var dtaxes in taxViewModel.Taxes)
+                    {
+                        <option value="@dtaxes.Taxid">@dtaxes.TaxName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-3">
+                <input type="text" @bind="HsCode" placeholder="Enter HsCode" class="form-control" />
+            </div>  
+            <div class="col-3">
+                <button class="btn btn-dark form-control" @onclick="ChangePropertyValue">Search</button>
+            </div>
+        </div>           
+        }
+    </div>
+    <br />
+    <br />
+    <div class="col-xl-12">
+
+        @if (categoryViewMode.Categories == null)
+        {
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div><p><em>Loading....</em></p>
+        }
+        else
+        {
+            @foreach (var cat in categoryViewMode.Categories)
+            {
+                <table class="table-bordered" style="font-size:0.7rem">
+                    <thead>
+                        <tr>
+                            <th style="background-color:lightseagreen;">@cat.Categoryname</th>
+                            <th style="background-color:darkblue; color:aliceblue;">Classification</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color:lightblue;">
+                                @cat.CategoryDescription
+                                <img src="@cat.Imageurl" style="max-width:100px; max-height:100px" class="img-fluid" />
+                            </td>
+                            <td>
+                                @if (classificationViewModel.Classifications == null)
+                                {
+                                    <p><em>Loading....</em></p>
+                                }
+                                else
+                                {
+                                    <table class="table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color:lightseagreen;">solar Modular Capacity</th>
+                                                <th style="background-color:lightseagreen;">Description</th>
+                                                <th style="background-color:lightseagreen;">Pictorial(Illustration)</th>
+                                                <th style="background-color:lightseagreen;">HS Code</th>
+                                                <th style="background-color:darkblue; color:aliceblue;">Tax Treatement Per State</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var clas in classificationViewModel.Classifications.Where(c => c.Categoryid == cat.Categoryid))
+                                        {
+                                            <tbody>
+                                                <tr class="contentColor">
+                                                    <td>
+                                                        @clas.Solarmodularcapacity
+                                                    </td>
+                                                    <td>
+                                                        @clas.Description
+                                                    </td>
+                                                    <td>
+                                                        <img src=" @clas.Illustrationurl" style="max-width:100px; max-height:100px" class="img-fluid" />
+                                                    </td>
+                                                    <td>
+                                                        @clas.Hscode
+                                                    </td>
+                                                    <td>
+                                                        @if (taxViewModel.Taxes == null)
+                                                        {
+                                                            <p><em>Loading....</em></p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <table class="table-bordered">
+                                                                <tr>
+                                                                    @foreach (var tax in taxViewModel.Taxes)
+                                                                    {
+
+                                                                        <td style="background-color:lightseagreen;">
+                                                                            @tax.TaxName.Trim() &nbsp; (@tax.Taxcode)
+                                                                        </td>
+
+                                                                    }
+                                                                </tr>
+                                                                <tr>
+                                                                    @foreach (var tax in taxViewModel.Taxes)
+                                                                    {
+                                                                        <td>
+                                                                            @if (stateTaxViewModel.StateTaxes == null)
+                                                                            {
+                                                                                <p><em>Loading....</em></p>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <table class="table-bordered">
+                                                                                    <tr>
+                                                                                        @foreach (var stateTax1 in stateTaxViewModel.StateTaxes.Where(t => t.Classificationid == clas.Classificationid && t.Taxid == tax.Taxid))
+                                                                                        {
+                                                                                            string stateColor = "";
+                                                                                            if (stateTax1.StateCode == "UG")
+                                                                                                stateColor = "UG";
+                                                                                            else if (stateTax1.StateCode == "KY")
+                                                                                                stateColor = "KY";
+                                                                                            else if (stateTax1.StateCode == "TZ")
+                                                                                                stateColor = "TZ";
+                                                                                            else if (stateTax1.StateCode == "RW")
+                                                                                                stateColor = "RW";
+                                                                                            <td style="width:60px;" class="@stateColor">
+                                                                                                @stateTax1.StateCode
+                                                                                            </td>
+                                                                                        }
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        @foreach (var stateTax2 in stateTaxViewModel.StateTaxes.Where(t => t.Classificationid == clas.Classificationid && t.Taxid == tax.Taxid))
+                                                                                        {
+                                                                                            <td>
+                                                                                                @stateTax2.Taxpercentage
+                                                                                            </td>
+                                                                                        }
+                                                                                    </tr>
+                                                                                </table>
+                                                                            }
+                                                                        </td>
+
+                                                                    }
+                                                                </tr>
+                                                            </table>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </table>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br /><br />
+            }
+        }
+
+    </div>
+</center>
+
+@code {
+
+    private Country Country { set; get; }
+    private Tax tax_ { get; set; }
+    private string HsCode { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Country = new Country();
+        tax_ = new Tax();
+        await categoryViewMode.GetCategories();
+        await classificationViewModel.GetClassifications();
+        await stateTaxViewModel.GetStateTaxes();
+        await taxViewModel.GetTaxes();
+        await stateViewModel.GetCountries();
+        StateContainer.OnChange += StateHasChanged;
+    }
+
+    private void ChangePropertyValue()
+    {
+        StateContainer.CountryProperty = Country.Stateid;
+        StateContainer.HsCodeProperty = HsCode;
+        StateContainer.TaxProperty = tax_.Taxid;
+        navigationManager.NavigateTo("searchtax");
+
+    }
+
+    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    } 
+}

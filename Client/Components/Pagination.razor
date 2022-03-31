@@ -1,0 +1,78 @@
+﻿@using SolarTaxApp.Shared.Models
+
+<div class="p-xl-2">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            @foreach (var pageItem in pageItems)
+            {
+                <li @onclick="@(() => SelectCurrentPage(pageItem))"
+                    style="cursor:pointer"
+                    class="page-item @(pageItem.Active ? "active" : null) @(pageItem.Enabled ? null : "disabled")">
+                    <span class="page-link" href="#">@pageItem.Text</span>
+                </li>
+            }
+
+        </ul>
+    </nav>
+</div>
+
+@code {
+    private List<PageItem> pageItems;
+
+    [Parameter]
+    public int PageIndex { get; set; }
+    [Parameter]
+    public int TotalPages { get; set; }
+    [Parameter]
+    public int Radius { get; set; }
+    [Parameter]
+    public EventCallback<int> OnSelectedPage { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        CreatePage();
+    }
+
+    private void CreatePage()
+    {
+        pageItems = new List<PageItem>();
+
+        //create previous page
+        var hasPreviousPage = PageIndex > 1;
+        var previousPageIndex = PageIndex - 1;
+        pageItems.Add(new PageItem("Prev", previousPageIndex, hasPreviousPage));
+
+        //create page and add to the pageItems List
+        if (Radius >= TotalPages)
+            Radius = TotalPages - 1;
+
+        for (int i = 1; i <= TotalPages; i++)
+        {
+            if (i >= PageIndex - Radius && i < PageIndex + Radius)
+            {
+                pageItems.Add(new PageItem(i.ToString(), i, true) { Active = PageIndex == i });
+            }
+        }
+
+        //create next page
+        var hasNextPage = PageIndex < TotalPages;
+        var nextPageIndex = PageIndex + 1;
+        pageItems.Add(new PageItem("Next", nextPageIndex, hasNextPage));
+
+    }
+
+    private async Task SelectCurrentPage(PageItem pageItem)
+    {
+        if (PageIndex == pageItem.PageIndex)
+        {
+            return;
+        }
+        if (!pageItem.Enabled)
+        {
+            return;
+        }
+        PageIndex = pageItem.PageIndex;
+        await OnSelectedPage.InvokeAsync(pageItem.PageIndex);
+    }
+}

@@ -1,0 +1,77 @@
+﻿/* (B) RESPONSIVE IMAGE */
+.textover img {
+    width: 100%;
+    max-height: 60vh;
+}
+
+.textover {
+    max-width: 100%;
+}
+/* OPTIONAL */
+
+
+/* (C) POSITION CAPTION */
+.textover {
+    position: relative;
+}
+    /* REQUIRED */
+    .textover figcaption {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    /* (D) CAPTION COSMETICS */
+    .textover figcaption {
+        box-sizing: border-box;
+        width: 50rem;
+        max-width: 50vw;
+        height: 60vh;        
+        padding: 10px;
+        color: white;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.4);
+    }
+    .textover figcaption p{
+        font-size: 0.8rem;
+        text-align:justify;
+        margin-top:10px;
+    }
+
+    .UG{
+        background-color:yellow;
+    }
+    .KY {
+        background-color: red;
+    }
+    .TZ {
+        background-color: skyblue;
+    }
+    .RW {
+        background-color: green;
+    }
+    .colorBlue {
+        background-color: rgb(9, 12, 70);
+        color:aliceblue;
+    }
+    .lightGreen {
+        background-color: rgb(166, 194, 195);
+    }
+    .contentColor {
+        background-color: rgba(252, 252, 252, 0.92);
+    }
+    .titleColor{
+        color:rgb(33, 242, 56);
+    }
+    .navColor {
+        color: rgb(33, 242, 56);
+    }
+    .mainTitle {
+        color: rgb(52, 150, 245);
+    }
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        .textover figcaption {
+            max-height: 48vw;
+        }
+    }

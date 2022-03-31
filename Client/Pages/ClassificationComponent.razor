@@ -1,0 +1,148 @@
+﻿@page "/classification"
+@using SolarTaxApp.Client.ViewModels
+@inject IClassificationListViewModel classificationListViewModel
+@inject IClassificationViewModel classificationViewModel
+
+
+<h3>Classification</h3>
+<center>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-3">
+                <a href="addclassification" class="btn btn-outline-primary">New Classification</a>
+            </div>
+            <div class="row col-8">
+                <input type="search" class="form-control col-4" />&nbsp;<button class="btn btn-secondary col-2"><span class="oi oi-magnifying-glass"></span>Search</button>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            @if (classificationListViewModel.ActualClassifications == null)
+            {
+                <p><em>Loading....</em></p>
+            }
+            else
+            {
+                <table class="table" style="font-size:0.7rem">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Modular Capacity</th>
+                            <th>HS Code</th>
+                            <th>Description</th>
+                            <th>Image/Illustration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var classification in classificationList)
+                        {
+                            <tr>
+                                <td>
+                                    @classification.Category
+                                </td>
+                                <td>
+                                    @classification.Solarmodularcapacity
+                                </td>
+                                <td>
+                                    @classification.Hscode
+                                </td>
+                                <td>
+                                    @classification.Description
+                                </td>
+                                <td>
+                                    <img src="@classification.Illustrationurl" class="img-fluid" style="width:50px; height:50px" />
+                                </td>
+                                <td class="row">
+                                    <a class="btn btn-primary" href="editclassification/@classification.Classificationid">
+                                        <span class="oi oi-pencil" aria-hidden="true"></span>Edit
+                                    </a>
+                                    <a class="btn btn-warning" @onclick="() => OpenDialog(Guid.Parse(classification.Classificationid),classification.Solarmodularcapacity)">
+                                        <span class="oi oi-trash" aria-hidden="true"></span>Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <Pagination TotalPages="@(totalPages != 0 ? totalPages : 1)"
+                                    PageIndex="@pageIndex"
+                                    Radius="3"
+                                    OnSelectedPage="@SelectedPage">
+                        </Pagination>
+                    </tfoot>
+                </table>
+            }
+        </div>
+    </div>
+    @if (DialogIsOpen)
+    {
+        <Popup Caption="Delete Classification"
+               Message="@message"
+               OnClose="@OnDialogClose"
+               Type="Popup.Category.DeleteNot">
+        </Popup>
+    }
+</center>
+
+@code {
+    private Guid idClassification;
+    private string message;
+    private bool DialogIsOpen = false;
+
+    //for pagination
+    private int pageIndex = 1;
+    private int itemsPerPage = 5;
+    private int totalPages = 1;
+
+    List<ActualClassification> allClassificationList { set; get; } = new List<ActualClassification>();
+    private IEnumerable<ActualClassification> classificationList = Enumerable.Empty<ActualClassification>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await classificationListViewModel.GetActualClassifications();
+        allClassificationList = classificationListViewModel.ActualClassifications;
+        if (allClassificationList != null)
+        {
+            totalPages = (int)(Math.Ceiling((double)allClassificationList.Count() / (double)itemsPerPage));
+            classificationList = allClassificationList.Skip(0).Take(itemsPerPage);
+        }
+    }
+    private void OpenDialog(Guid id, string title)
+    {
+        DialogIsOpen = true;
+        idClassification = id;
+        message = "Do you want to Delete \""
+                  + title + "\"?";
+    }
+
+    private async Task OnDialogClose(bool isOk)
+    {
+        if (isOk)
+        {
+            await classificationViewModel.GetClassification(idClassification.ToString());
+            await classificationViewModel.DeleteClassification();
+            await classificationListViewModel.GetActualClassifications();
+            allClassificationList = classificationListViewModel.ActualClassifications;
+            if (allClassificationList != null)
+            {
+                totalPages = (int)(Math.Ceiling((double)allClassificationList.Count() / (double)itemsPerPage));
+                classificationList = allClassificationList.Skip(0).Take(itemsPerPage);
+            }
+
+        }
+        DialogIsOpen = false;
+    }
+
+    private async Task Cancel()
+    {
+        await classificationListViewModel.DeleteClassification();
+    }
+    private void SelectedPage(int selectedPageIndex)
+    {
+        if (allClassificationList != null)
+        {
+            pageIndex = selectedPageIndex;
+            var skipCount = itemsPerPage * (pageIndex - 1);
+            classificationList = allClassificationList.Skip(skipCount).Take(itemsPerPage);
+        }
+    }
+}

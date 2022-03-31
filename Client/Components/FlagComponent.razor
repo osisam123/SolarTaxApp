@@ -1,0 +1,32 @@
+﻿@using SolarTaxApp.Client.ViewModels
+@inject StateContainer stateContainer
+
+
+@if (Countries.Countries == null)
+{
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+}
+else
+{
+    <img src="@stateContainer.FlagProperty" class="rounded-circle dropdown-toggle" id="imgdropdown" style="width:50px; height:50px" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+    <div class="dropdown-menu" aria-labelledby="imgdropdown">
+        @foreach (var state in Countries.Countries)
+        {
+            <div class="mb-1"><img src="@state.Flag" class="img-fluid" style="width:100px; height:50px" @onclick="()=>AssignFlag(state.Stateid,state.Code,state.Flag)" /></div>
+            <div class="dropdown-divider"></div>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public IStateViewModel Countries { get; set; }
+
+    private void AssignFlag(string countryid, string code, string flag)
+    {
+        stateContainer.CountryFocusProperty = countryid;
+        stateContainer.FocusCodeProperty = code;
+        stateContainer.FlagProperty = flag;
+    }
+}

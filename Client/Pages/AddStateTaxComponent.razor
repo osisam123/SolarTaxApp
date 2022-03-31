@@ -1,0 +1,156 @@
+﻿@page "/addtaxtreatement"
+@using SolarTaxApp.Client.ViewModels
+@inject ITaxTreatementViewModel taxTreatementViewModel
+@inject IClassificationViewModel classificationViewModel
+@inject ITaxViewModel taxViewModel
+@inject IStateViewModel stateViewModel
+
+
+<div class="col-9">
+    @if(classificationViewModel.Classifications == null)
+    {
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    }
+    else
+    {
+        <h5>Add Tax Treatement</h5>
+        <EditForm Model="taxTreatement" OnSubmit="Submit">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <ValidationSummary></ValidationSummary>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="control-label">
+                                Classification
+                            </label>
+                        </td>
+                        <td>
+                            <InputSelect @bind-Value="taxTreatement.Classificationid" class="form-control">
+                                <option value="">Select Classification ...</option>
+                                @foreach (var classification in classificationViewModel.Classifications)
+                                    {
+                                    <option value="@classification.Classificationid">@classification.Solarmodularcapacity &nbsp;@classification.Hscode </option>
+                                    }
+                            </InputSelect>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <label class="control-label">
+                                Tax Type
+                            </label>
+                        </td>
+                        <td>
+                            <InputSelect @bind-Value="taxTreatement.Taxid" class="form-control">
+                                <option value="">Select Tax ...</option>
+                                @foreach (var tax in taxViewModel.Taxes)
+                                    {
+                                    <option value="@tax.Taxid">@tax.Taxcode</option>
+                                    }
+                            </InputSelect>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <label for="capacity" class="control-label">
+                                State Code
+                            </label>
+                        </td>
+                        <td>
+                            <InputSelect @bind-Value="taxTreatement.Stateid" class="form-control">
+                                <option value="">Select State ...</option>
+                                @foreach (var state in stateViewModel.Countries)
+                                    {
+                                    <option value="@state.Stateid">@state.Code</option>
+                                    }
+                            </InputSelect>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <label for="hscode" class="control-label">
+                                Tax (%)
+                            </label>
+                        </td>
+                        <td>
+                            <InputText id="hscode" @bind-Value="taxTreatement.Taxpercentage" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                    <br />
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Save" class="btn btn-primary col-4" />
+                            &#8194;
+                            <button type="button" class="btn btn-warning col-4"
+                                    @onclick="() => Cancel()">
+                                &#8194;&#8201;Cancel&#8201;&#8194;
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </EditForm>
+    }
+    
+    <br />
+    <br />
+</div>
+@if (DialogIsOpen)
+{
+    <Popup Caption="Save Tax Treatement"
+           Message="@message"
+           OnClose="@OnDialogClose"
+           Type="Popup.Category.Okay">
+    </Popup>
+}
+
+
+@code {
+    private TaxTreatement taxTreatement { get; set; }
+
+    private string firstName;
+    private string message;
+    private bool DialogIsOpen = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await classificationViewModel.GetClassifications();
+        await taxViewModel.GetTaxes();
+        await stateViewModel.GetCountries();
+        taxTreatement = new TaxTreatement();
+    }
+
+
+    private void Cancel()
+    {
+
+    }
+
+    private async Task Submit()
+    {
+        taxTreatementViewModel.TaxTreatement_ = taxTreatement;
+        var resp = await taxTreatementViewModel.InsertTaxTreatement();
+        if (resp)
+        {
+            OpenDialog();
+        }
+    }
+    private void OpenDialog()
+    {
+        DialogIsOpen = true;
+        message = "Tax Treatement Saved";
+        taxTreatement = new TaxTreatement();
+    }
+    private void OnDialogClose(bool isOk)
+    {
+        DialogIsOpen = false;
+    }
+}

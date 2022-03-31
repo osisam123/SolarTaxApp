@@ -1,0 +1,103 @@
+﻿@layout SelectLayout
+@page "/"
+
+@using SolarTaxApp.Client.ViewModels
+@inject IStateViewModel stateViewModel
+@implements IDisposable
+@inject StateContainer StateContainer
+@inject NavigationManager navigationManager
+
+<center>
+    <div class="col-xl-10 mt-xl-5">
+
+        @if (stateViewModel.Countries == null)
+        {
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div><p><em>Loading....</em></p>
+        }
+        else
+        {
+            <figure class="textover">
+                <img src="img/img_main_1.png" />
+                <figcaption>
+                    <div class="col-xl-12 mt-xl-5">
+                        <h1>East African Regional Portal</h1>
+                        <h3>Solar Taxation</h3>
+                    </div>
+                    <div class="col-xl-12 mt-xl-5">
+                        <div class="row">
+                            @foreach (var country in stateViewModel.Countries)
+                            {
+                                <div class="col-2" @onclick="()=>AssignFocus(country.Stateid,country.Code,country.Flag)" style="">
+                                    <p>@country.Statename</p>
+                                    <img src="@country.Flag" class="rounded-circle" style="width:80px; height:80px" />
+                                </div>
+                            }
+                        </div>
+                        <p>Select a Country</p>
+                    </div>
+                </figcaption>
+            </figure>
+        }
+    </div>
+    <div class="col-xl-12 mt-xl-5">
+        <p>Supported by</p>
+        <div class="row">
+            <img src="img/EAC.png" class="img-fluid mr-3" style="max-width: 250px; max-height: 80px" />
+            <img src="img/UDREEA.png" class="img-fluid mr-3" style="max-width: 250px; max-height: 80px" />
+            <img src="img/KEREA_.png" class="img-fluid mr-3" style="max-width: 250px; max-height: 80px" />
+            <img src="img/USEA_.png" class="img-fluid mr-3" style="max-width: 250px; max-height: 80px" />
+            <img src="img/TAREA.png" class="img-fluid mr-3" style="max-width: 250px; max-height: 80px" />
+            <img src="img/TEA_.png" class="img-fluid mr-3" style="max-width:150px; max-height:80px" />
+            <img src="img/UKAID_.png" class="img-fluid mr-3" style="max-width: 150px; max-height: 80px" />
+            <img src="img/EPD.png" class="img-fluid mr-3" style="max-width: 150px; max-height: 80px" />
+            <img src="img/gogla.png" class="img-fluid mr-3" style="max-width: 150px; max-height: 80px" />
+        </div>
+    </div>
+</center>
+
+
+
+@code {
+
+    public string C_Forcus { get; set; }
+    public string C_FocusCode { get; set; }
+    public string C_Flag { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await stateViewModel.GetCountries();
+    }
+
+    private void ChangePropertyValue()
+    {
+        StateContainer.CountryFocusProperty = C_Forcus;
+        StateContainer.FocusCodeProperty = C_FocusCode;
+        StateContainer.FlagProperty = C_Flag;
+
+        navigationManager.NavigateTo("searchtax");
+
+    }
+
+    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    }
+
+    private void GotTo()
+    {
+        navigationManager.NavigateTo("/home");
+    }
+
+    private void AssignFocus(string countryId,string cCode,string Flag)
+    {
+        C_Forcus = countryId;
+        C_FocusCode = cCode;
+        C_Flag = Flag;
+
+        ChangePropertyValue();
+        GotTo();
+    }
+
+}

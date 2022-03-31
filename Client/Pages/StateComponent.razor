@@ -1,0 +1,137 @@
+﻿@page "/state"
+@using SolarTaxApp.Client.ViewModels
+@inject IStateViewModel stateViewModel
+
+<h3>State / Country</h3>
+<center>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-3">
+                <a href="addstate" class="btn btn-outline-primary">New State</a>
+            </div>
+            <div class="row col-8">
+                <input type="search" class="form-control col-4" />&nbsp;<button class="btn btn-secondary col-2"><span class="oi oi-magnifying-glass"></span>Search</button>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            @if (stateViewModel.Countries == null)
+            {
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>State Code</th>
+                            <th>State Full Name</th>
+                            <th>State Flag</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var state in stateList)
+                        {
+                        <tr>
+                            <td>
+                                @state.Code
+                            </td>
+                            <td>
+                                @state.Statename
+                            </td>
+                            <td>
+                               <img src="@state.Flag" class="img-fluid" style="width:50px; height:50px" /> 
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="editstate/@state.Stateid">
+                                    <span class="oi oi-pencil" aria-hidden="true"></span>Edit
+                                </a>
+                                <a class="btn btn-warning" @onclick="() => OpenDialog(Guid.Parse(state.Stateid),state.Statename)">
+                                    <span class="oi oi-trash" aria-hidden="true"></span>Delete
+                                </a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <Pagination TotalPages="@(totalPages != 0 ? totalPages : 1)"
+                                    PageIndex="@pageIndex"
+                                    Radius="3"
+                                    OnSelectedPage="@SelectedPage">
+                        </Pagination>
+                    </tfoot>
+                </table>
+            }
+        </div>
+    </div>
+    @if (DialogIsOpen)
+    {
+        <Popup Caption="Delete State"
+               Message="@message"
+               OnClose="@OnDialogClose"
+               Type="Popup.Category.DeleteNot">
+        </Popup>
+    }
+</center>
+
+@code {
+    private Guid idState;
+    private string message;
+    private bool DialogIsOpen = false;
+
+    //for pagination
+    private int pageIndex = 1;
+    private int itemsPerPage = 5;
+    private int totalPages = 1;
+
+    List<Country> allStateList { set; get; } = new List<Country>();
+    private IEnumerable<Country> stateList = Enumerable.Empty<Country>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await stateViewModel.GetCountries();
+        allStateList = stateViewModel.Countries;
+        if (allStateList != null)
+        {
+            totalPages = (int)(Math.Ceiling((double)allStateList.Count() / (double)itemsPerPage));
+            stateList = allStateList.Skip(0).Take(itemsPerPage);
+        }
+    }
+    private void OpenDialog(Guid id, string title)
+    {
+        DialogIsOpen = true;
+        idState = id;
+        message = "Do you want to Delete \""
+                  + title + "\"?";
+    }
+
+    private async Task OnDialogClose(bool isOk)
+    {
+        if (isOk)
+        {
+            await stateViewModel.GetCountry(idState.ToString());
+            await stateViewModel.DeleteCountry();
+            await stateViewModel.GetCountries();
+            allStateList = stateViewModel.Countries;
+            if (allStateList != null)
+            {
+                totalPages = (int)(Math.Ceiling((double)allStateList.Count() / (double)itemsPerPage));
+                stateList = allStateList.Skip(0).Take(itemsPerPage);
+            }
+
+        }
+        DialogIsOpen = false;
+    }
+
+   
+    private void SelectedPage(int selectedPageIndex)
+    {
+        if (allStateList != null)
+        {
+            pageIndex = selectedPageIndex;
+            var skipCount = itemsPerPage * (pageIndex - 1);
+            stateList = allStateList.Skip(skipCount).Take(itemsPerPage);
+        }
+    }
+}

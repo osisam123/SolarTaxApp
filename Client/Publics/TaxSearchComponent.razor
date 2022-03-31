@@ -1,0 +1,173 @@
+﻿@layout PlainLayout
+@page "/taxclient"
+@implements IDisposable
+@using SolarTaxApp.Client.ViewModels
+@using SolarTaxApp.Shared.Models
+@inject IStateTaxViewModel stateTaxViewModel
+@inject ITaxViewModel taxViewModel
+@inject IStateViewModel stateViewModel
+@inject StateContainer stateContainer
+
+<center>
+
+    @if (stateTaxViewModel.StateTaxes == null)
+    {
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div><p><em>Loading....</em></p>
+    }
+    else
+    {
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col-3">
+                    <select @bind="Country.Stateid" class="form-control">
+                        <option value="">Select Country/State</option>
+                        @foreach (var dstate in stateViewModel.Countries)
+                        {
+                            <option value="@dstate.Stateid">@dstate.Statename</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select @bind="tax_.Taxid" class="form-control">
+                        <option value="">Select Tax Type</option>
+                        @foreach (var dtaxes in taxViewModel.Taxes)
+                        {
+                            <option value="@dtaxes.Taxid">@dtaxes.TaxName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input type="text" @bind="HsCode" placeholder="Enter HsCode" class="form-control" />
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-dark form-control" @onclick="ChangePropertyValue">Search</button>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <br />
+        <div class="col-12">
+            <table class="table table-sm table-active">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Solar Modular Capacity</th>
+                        <th>Description</th>
+                        <th>Illustration</th>
+                        <th>HSCode</th>
+                        <th>State Code</th>
+                        <th>Tax Name</th>
+                        <th>Tax percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var statetax in stateTaxList)
+                    {
+
+                        <tr>
+                            <td><h6>@statetax.CategoryName</h6><img src="@statetax.Illustration" class="img-fluid" /></td>
+                            <td>@statetax.SolarModularCapacity</td>
+                            <td>@statetax.Description</td>
+                            <td><img src="@statetax.ImageUrl" class="img-fluid" /></td>
+                            <td>@statetax.HSCode</td>
+                            <td>@statetax.StateCode</td>
+                            <td>@statetax.TaxName (@statetax.TaxCode)</td>
+                            <td>@statetax.Taxpercentage</td>
+                        </tr>
+
+                    }
+                </tbody>
+                <tfoot>
+                    <Pagination TotalPages="@(totalPages != 0 ? totalPages : 1)"
+                                PageIndex="@pageIndex"
+                                Radius="3"
+                                OnSelectedPage="@SelectedPage">
+                    </Pagination>
+                </tfoot>
+            </table>
+        </div>
+    }
+
+</center>
+
+@code {
+
+    private MultiSearch search;
+    private Country Country { set; get; }
+    private Tax tax_ { get; set; }
+    private string HsCode { get; set; }
+
+    //for pagination
+    private int pageIndex = 1;
+    private int itemsPerPage = 5;
+    private int totalPages = 1;
+
+    List<StateTax> allStateTaxList { set; get; } = new List<StateTax>();
+    private IEnumerable<StateTax> stateTaxList = Enumerable.Empty<StateTax>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Country = new Country();
+        tax_ = new Tax();
+
+        stateContainer.OnChange += StateHasChanged;
+        search = new MultiSearch()
+        {
+            Country = stateContainer.CountryFocusProperty,
+            TaxType = stateContainer.TaxProperty,
+            HsCode = stateContainer.HsCodeProperty
+        };
+        await stateTaxViewModel.GetMultiStateTaxSearch(search);
+        await taxViewModel.GetTaxes();
+        await stateViewModel.GetCountries();
+
+        allStateTaxList = stateTaxViewModel.StateTaxes;
+        if (allStateTaxList != null)
+        {
+            totalPages = (int)(Math.Ceiling((double)allStateTaxList.Count() / (double)itemsPerPage));
+            stateTaxList = allStateTaxList.Skip(0).Take(itemsPerPage);
+        }
+
+    }
+
+    private async Task ChangePropertyValue()
+    {
+        stateContainer.CountryProperty = Country.Stateid;
+        stateContainer.HsCodeProperty = HsCode;
+        stateContainer.TaxProperty = tax_.Taxid;
+        stateContainer.OnChange += StateHasChanged;
+        search = new MultiSearch()
+        {
+            Country = stateContainer.CountryProperty,
+            TaxType = stateContainer.TaxProperty,
+            HsCode = stateContainer.HsCodeProperty
+        };
+        await stateTaxViewModel.GetMultiStateTaxSearch(search);
+
+        allStateTaxList = stateTaxViewModel.StateTaxes;
+        if (allStateTaxList != null)
+        {
+            totalPages = (int)(Math.Ceiling((double)allStateTaxList.Count() / (double)itemsPerPage));
+            stateTaxList = allStateTaxList.Skip(0).Take(itemsPerPage);
+        }
+    }
+
+    private void SelectedPage(int selectedPageIndex)
+    {
+        if (allStateTaxList != null)
+        {
+            pageIndex = selectedPageIndex;
+            var skipCount = itemsPerPage * (pageIndex - 1);
+            stateTaxList = allStateTaxList.Skip(skipCount).Take(itemsPerPage);
+        }
+    }
+
+    public void Dispose()
+    {
+        stateContainer.OnChange -= StateHasChanged;
+    }
+}

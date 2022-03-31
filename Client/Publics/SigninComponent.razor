@@ -1,0 +1,90 @@
+﻿@layout PlainLayout
+@page "/login"
+@inject NavigationManager navigationManager
+
+<center>
+    <div class="col-8 card mt-5">
+        <div class="col-12 row">
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-12 row">
+            <div class="col-6" style="border-right:none">
+                <img src="/img/artos.jpeg" max-width="400px" max-height="400px" class="img-fluid" />
+            </div>
+            <div class="col-6" style="border-left:none">
+                <h3>Login</h3>
+                <hr />
+                <div class="col-12 row">
+                    <input type="text" class="form-control" placeholder="Username" />
+                </div>
+                <br />
+                <div class="col-12 row">
+                    <input type="password" class="form-control" placeholder="Password" />
+                </div>
+
+                <br />
+                <div class="col-12 row">
+                    <button class="btn btn-primary col-4" @onclick="LoginUser">Login</button>
+                    &#8194;
+                    <button type="button" @onclick="() => Register()" class="btn btn-dark col-4">
+                        &#8194;&#8201;Register&#8201;&#8194;
+                    </button>
+                </div>
+                <div>
+                    <label id="errorms">@errMessage</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+@if (DialogIsOpen)
+{
+    <Popup Caption="Login"
+           Message="@message"
+           OnClose="@OnDialogClose"
+           Type="Popup.Category.Okay">
+    </Popup>
+}
+
+@code {
+
+    private string firstName;
+    private string message;
+    private bool DialogIsOpen = false;
+    private string errMessage;
+
+    public async Task LoginUser()
+    {
+        //var resp = await _loginViewModel.LoginUser();
+        //if (resp)
+        navigationManager.NavigateTo("/index", true);
+        //else
+        // errMessage = "Wrong Username or Password";
+    }
+
+    private void OpenDialog(string title)
+    {
+        DialogIsOpen = true;
+        message = "Failed to login";
+    }
+    private async Task OnDialogClose(bool isOk)
+    {
+        DialogIsOpen = false;
+    }
+
+    private void Register()
+    {
+        navigationManager.NavigateTo("/register");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //var authState = await authenticationState;
+        //var user = authState.User;
+
+        //if (user.Identity.IsAuthenticated)
+        //{
+        //    navigationManager.NavigateTo("/index", true);
+        //}
+    }
+}

@@ -1,0 +1,101 @@
+﻿@page "/edittax/{TaxId}"
+@using SolarTaxApp.Client.ViewModels
+@inject ITaxViewModel taxViewModel
+
+<div class="col-9">
+    <h5>Edit Tax Type</h5>
+    <EditForm Model="taxViewModel.Tax_" OnSubmit="Submit">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary></ValidationSummary>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="statecode" class="control-label">
+                            Tax Code
+                        </label>
+                    </td>
+                    <td>
+                        <InputText id="statecode" @bind-Value="taxViewModel.Tax_.Taxcode" class="form-control"></InputText>
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td>
+                        <label for="statename" class="control-label">
+                            Tax Full Name
+                        </label>
+                    </td>
+                    <td>
+                        <InputText id="statename" @bind-Value="taxViewModel.Tax_.TaxName" class="form-control"></InputText>
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Save" class="btn btn-primary col-4" />
+                        &#8194;
+                        <button type="button" class="btn btn-warning col-4"
+                                @onclick="() => Cancel()">
+                            &#8194;&#8201;Cancel&#8201;&#8194;
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </EditForm>
+    <br />
+    <br />
+</div>
+@if (DialogIsOpen)
+{
+    <Popup Caption="Edit State"
+           Message="@message"
+           OnClose="@OnDialogClose"
+           Type="Popup.Category.Okay">
+    </Popup>
+}
+
+
+
+@code {
+    [Parameter]
+    public string TaxId { get; set; }
+
+    private string firstName;
+    private string message;
+    private bool DialogIsOpen = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await taxViewModel.GetTax(TaxId);
+    }
+
+
+    private async Task Submit()
+    {
+        var resp = await taxViewModel.UpdateTax();
+        if (resp)
+        {
+            OpenDialog();
+        }
+    }
+
+    private void Cancel()
+    {
+
+    }
+
+    private void OpenDialog()
+    {
+        DialogIsOpen = true;
+        message = "Tax Updated";
+    }
+    private void OnDialogClose(bool isOk)
+    {
+        DialogIsOpen = false;
+    }
+}
+
+

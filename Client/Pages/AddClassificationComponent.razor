@@ -1,0 +1,163 @@
+﻿@page "/addclassification"
+@using SolarTaxApp.Client.ViewModels
+@inject IClassificationViewModel classificationViewModel
+@inject ICategoryViewModel categoryViewModel
+@using BlazorInputFile
+@using System.IO
+
+<div class="col-9">
+    @if (categoryViewModel.Categories == null)
+    {
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    }
+    else
+    {
+        <h5>Add Classification</h5>
+        <EditForm Model="classification" OnSubmit="Submit">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <ValidationSummary></ValidationSummary>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="control-label">
+                                Category Name
+                            </label>
+                        </td>
+                        <td>
+                            <InputSelect @bind-Value="classification.Categoryid" class="form-control">
+                                <option value="">Select Category ...</option>
+                                @foreach (var category in categoryViewModel.Categories)
+                                    {
+                                    <option value="@category.Categoryid">@category.Categoryname&nbsp;@category.CategoryDescription</option>
+                                    }
+                            </InputSelect>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <label for="capacity" class="control-label">
+                                Solar Modular Capacity
+                            </label>
+                        </td>
+                        <td>
+                            <InputText id="capacity" @bind-Value="classification.Solarmodularcapacity" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <label for="hscode" class="control-label">
+                                HS Code
+                            </label>
+                        </td>
+                        <td>
+                            <InputText id="hscode" @bind-Value="classification.Hscode" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <label for="description" class="control-label">
+                                Description
+                            </label>
+                        </td>
+                        <td>
+                            <InputText id="description" @bind-Value="classification.Description" class="form-control"></InputText>
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td>
+                            <label class="control-label">
+                                Classification Image
+                            </label>
+                        </td>
+                        <td>
+                            <InputFile OnChange="@OnInputFileChange" class="form-control" />
+                        </td>
+                    </tr>
+                    <br />
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Save" class="btn btn-primary col-4" />
+                            &#8194;
+                            <button type="button" class="btn btn-warning col-4"
+                                    @onclick="() => Cancel()">
+                                &#8194;&#8201;Cancel&#8201;&#8194;
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </EditForm>
+    }
+
+    <br />
+    <br />
+</div>
+@if (DialogIsOpen)
+{
+    <Popup Caption="Add Classification"
+           Message="@message"
+           OnClose="@OnDialogClose"
+           Type="Popup.Category.Okay">
+    </Popup>
+}
+
+@code {
+
+    private Classification classification { get; set; }
+    private byte[] ImgUploaded { set; get; }
+
+    private string firstName;
+    private string message;
+    private bool DialogIsOpen = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await categoryViewModel.GetCategories();
+        classification = new Classification();
+
+    }
+    private async Task OnInputFileChange(IFileListEntry[] files)
+    {
+        var file = files.FirstOrDefault();
+        if (file != null)
+        {
+            var ms = new MemoryStream();
+            await file.Data.CopyToAsync(ms);
+            ImgUploaded = ms.ToArray();
+            classification.Illustrationurl = $"data:image/png;base64,{Convert.ToBase64String(ImgUploaded)}";
+        }
+    }
+
+    private void Cancel()
+    {
+
+    }
+
+    private async Task Submit()
+    {
+        classificationViewModel.Classification = classification;
+        var resp = await classificationViewModel.InsertClassification();
+        if (resp)
+        {
+            OpenDialog();
+        }
+    }
+    private void OpenDialog()
+    {
+        DialogIsOpen = true;
+        message = "Classification Saved";
+        classification = new Classification();
+    }
+    private void OnDialogClose(bool isOk)
+    {
+        DialogIsOpen = false;
+    }
+}

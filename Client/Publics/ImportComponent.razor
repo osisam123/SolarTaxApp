@@ -1,0 +1,201 @@
+﻿@layout PlainLayout
+@page "/importterms"
+
+@using SolarTaxApp.Client.ViewModels
+@inject StateContainer stateContainer
+
+
+    <center>
+        <div class="col-7">
+
+            <h5 class="colorBlue" style="font-size:1rem">The common iterms used or parties involved during the import process of these products</h5>
+            <br />
+            <span class="navColor">Table 1- Common terms used in customs</span>
+            <table class="table-bordered" style="width: 100%">
+                <thead>
+                    <tr class="colorBlue">
+                        <th style="width: 40%">Terms</th>
+                        <th style="width: 60%">Definition</th>
+                    </tr>
+                </thead>
+                <tbody class="contentColor">
+                    <tr>
+                        <td class="lightGreen">Importer</td>
+                        <td>For customs purposes, this is the person who makes (or on whose behalf an agent) makes the import declaration, and who is liable for payment of the duties (if any) on the imported- sometimes regarded to as the consignee on the shipping documents.</td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">Airway Bill or Bill of Lading</td>
+                        <td>This is a negotiable document issued by the either the airline of shipping line as a contract of carriage of products. It’s also a receipt of cargo accepted for transportation, and must be presented for taking delivery at the destination.</td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">Single Administrative document (SAD) / Import Declaration Form (IDF)</td>
+                        <td>This is a declaration document filed with the customs team by the importer or his agent to undergo the necessary import customs clearance formalities. </td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">Customs Agent</td>
+                        <td>A person licensed to act as an agent on behalf of the importer. He declares or produces the Import Declaration Forms to the Tax Authorities</td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">Shipping/Freight Bill</td>
+                        <td>This is a document required by the Custom’s Authorities for clearance of the goods for shipment.</td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">Commercial Invoice</td>
+                        <td>This is a customs document provided by the person or corporation that is exporting products across the international borders to EAC.</td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">Delivery Note</td>
+                        <td>The document accompanying a consignment of products that lists their description and quantity, Normally a signed copy by the importer is returned to the seller/exporter.</td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">Parking List</td>
+                        <td>This is a document that details the contents, and often dimensions and weight, of each package or container being exported by the exporter.</td>
+                    </tr>
+                    <tr>
+                        <td class="lightGreen">International Commercial Terms</td>
+                        <td>
+                            These are series of pre-defined commercial terms published by the ICC, accepted worldwide in assignment of costs and responsibilities between the buyer and the seller. In brief, the commonly used terms in EAC include:
+                            <ol type="1">
+                                <li>Cost And Freight</li>
+                                <li>Cost, Insurance and Freight</li>
+                                <li>Delivery Duty Paid</li>
+                                <li>Ex-works and</li>
+                                <li>Free On Board/Airport</li>
+                            </ol>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h5 class="colorBlue mt-3" style="font-size:1rem">Summary of the import process</h5>
+            <br /><br />
+
+
+            <span class="navColor">Table 2 - Import procedures and required documents</span>
+            <table class="table-bordered contentColor" style="width: 100%">
+                <tr>
+                    <td class="lightGreen" style="width: 40%">Process Particulars</td>
+                    <td style="width: 60%">Details</td>
+                </tr>
+                <tr>
+                    <td class="lightGreen">Objective</td>
+                    <td>Explain import process of goods i.e. from issuance of a purchase order to products receipt by the importer of the products</td>
+                </tr>
+                <tr>
+                    <td class="lightGreen">Mode of import</td>
+                    <td>Air or Sea</td>
+                </tr>
+                <tr>
+                    <td class="lightGreen">Primary Actors </td>
+                    <td>
+                        <ul>
+                            <li>Origin countries</li>
+                            <li>Importers bankers </li>
+                            <li>Importer teams</li>
+                            <li>Purchase team</li>
+                            <li>Customs agent</li>
+                            <li>Freight forwarders</li>
+                            <li>Accounts department</li>
+                            <li>URA,KRA,TRA or RRA</li>
+                            <li>Local transporters</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lightGreen">Process Input </td>
+                    <td>Assessment of the components requirement and placement of order to the shipper.</td>
+                </tr>
+                <tr>
+                    <td class="lightGreen">Process Output </td>
+                    <td>Customs clearance of the components and their receipt by the importer at its premises/warehouse.</td>
+                </tr>
+            </table>
+
+
+            <br />
+            <table class="table-bordered contentColor" style="width: 100%">
+                <tr>
+                    <td class="lightGreen" style="width: 40%">List of Documents Involved</td>
+                    <td style="width: 60%">
+                        <ul>
+                            <li>Bill of ladding or airway bill</li>
+                            <li>An Insurance certificate</li>
+                            <li>Certificate of Origin</li>
+                            <li>Certificate of conformity from UNBS, KEBS, TBS or RBS</li>
+                            <li>Commercial invoices</li>
+                            <li>Customs bonds</li>
+                            <li>Examination order issued by URA, KRA, TRA or RRA Customs</li>
+                            <li>Import Declaration Form (IDF)</li>
+                            <li>Purchase orders</li>
+                            <li>Parking list</li>
+                            <li>Delivery note</li>
+                            <li>Single Administrative document</li>
+                            <li>Payment slips and receipts from the Bank</li>
+                            <li>Sales contract</li>
+                        </ul>
+                    </td>
+                </tr>
+                @if (stateContainer.FocusCodeProperty == "UG")
+                {
+                    <tr>
+                        <td class="lightGreen">Tax Exemption Documents required for those registered with Solar Associations</td>
+                        <td>
+                            Uganda
+                            <ul>
+                                <li>A fresh letter or recommendation from USEA</li>
+                                <li>Other import documents as the Tax Authority deems so to confirm the history</li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+                @if (stateContainer.FocusCodeProperty == "KY")
+                {
+                    <tr>
+                        <td class="lightGreen">Tax Exemption Documents required for those registered with Solar Associations</td>
+                        <td>
+                            Kenya
+                            <ul>
+                                <li>A fresh letter or recommendation from the Ministry of Energy</li>
+                                <li>The details of other import documents</li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+
+
+
+
+            <h6 class="colorBlue mt-3" style="font-size:1rem">Import process flow chart-process map for import and customs clearance for solar products in the East African Region</h6>
+            <img src="img/flowchartprocess.png" class="img-fluid" />
+
+
+            <h5 class="navColor" style="font-size:1rem; text-align:justify;">Pre-Export Verification of Conformity (PVoC)</h5>
+            @if (stateContainer.FocusCodeProperty == "UG")
+            {
+                <div style="text-align:justify;">
+                    <h6 class="navColor">Uganda</h6>
+                    <p>Uganda also has Pre-Export Verification of Conformity (PVoC) Requirements. PVoC is an inspection and verification programme carried out on goods by appointed inspection agents in the country of export. Verification of compliance to technical regulations and standards is provided for in Article 5 of the World Organization (WTO) Agreement on Technical Barriers to Trade (TBT). The objective of PVoC is to minimize the risk of unsafe and substandard goods entering Uganda and protect consumers against dangerous, shoddy and substandard imported products. Group 2 of the list of products under compulsory standards subject to the PVoC programme are the electrical and electronics including all solar equipment and all sorts of equipment relating to, producing or operated by electricity</p>
+                    <h6 class="navColor">PVoC for Exports to Uganda</h6>
+                    <p>Exportation to Uganda now requires a Certificate of Conformity for products regulated under the Uganda Pre-Export Verification of Conformity to Standards Programme (PVoC). To assure the customers of solar products about the quality and safety of imported goods, the Government of Uganda through the Uganda National Bureau of Standards (UNBS) has implemented a series of guidelines known as a Pre-Export Verification of Conformity to Standards Programme (PVoC).</p>
+                </div>
+                <div style="text-align:justify;">
+                    <p>The PVoC verifies the conformity of all regulated products and enforces their standards. Compliance to PVoC requirements are applicable in addition to any existing import processes. Every consignment of regulated products exported to Uganda must have a Certificate of Conformity. UNBS is responsible for the adoption and application of the standards for both imported and domestically manufactured products in the Ugandan market. The PVoC Standards Programme is a conformity assessment and verification procedure applied to specific goods/products at the respective exporting countries, to ensure their compliance with the applicable Ugandan Technical Regulations and Mandatory Standards or approved equivalents. The importer’s responsibility is to ensure that their suppliers are conversant with import quality requirements and that their consignments are accompanied with a Certificate of Conformity (CoC) from the authorized PVoC Agent. The exporter’ responsibility is to ensure that their products or goods meet the regulations and quality requirements of Uganda before shipment by obtaining the necessary Certificate of Conformity (CoC) from the authorized PVoC Service Provider for all products subject to the PVoC programme. In Uganda, authorised PVoC service producers include Intertek International and SGS Uganda Limited.</p>
+                </div>
+            }
+
+
+            @if (stateContainer.FocusCodeProperty == "KY")
+            {
+                <h6 class="navColor" style="text-align:justify;">Kenya</h6>
+                <p style="text-align:justify;">In Kenya the PVoC program was started on 29th September 2005 by KEBS, through the publication of Legal Notice No. 78 of 15th July, 2005 by the Minister for Trade and Industry. The program is also fully compliant with the provisions of Article 5 of WTO TBT Agreement. The objectives of the PVoC are to ensure quality of products, health and safety, and environmental protection for consumers and to safeguard the country from unfair trade practices and dumping of substandard goods. For solar products in Kenya KEBS/TC 092/SC 02 (TC Number) Solar and Wind Technologies (TC Name) are listed under KEBS Committees under the electro technical department. Exporters should ensure their products or goods meet the regulations and quality requirements of Kenya before shipment by carrying out tests based on relevant Kenya Standards or approved specifications and/or obtaining the necessary Certificate of Conformity (CoC) from the appointed PVoC Partners for all products subject to the PVoC program. Approved PVoC Partners by KEBS Include: Bureau Veritas, Cotecna, China Certification & Inspection (Group) Inspection Co. Ltd, Intertek International, SGS and QISJ. The role of these partners is to undertake conformity assessment activities in the country of origin for products being imported into Kenya. These activities include inspection, sampling, testing, sealing of full-load containers and issuance of COCs / COIs / CORs/NCR.</p>
+
+            }
+        </div>
+    </center>
+    @code {
+
+    }

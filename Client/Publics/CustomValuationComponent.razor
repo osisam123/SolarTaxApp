@@ -1,0 +1,72 @@
+﻿@layout PlainLayout
+@page "/customsvaluation"
+
+@using SolarTaxApp.Client.ViewModels
+@inject StateContainer stateContainer
+
+<center>
+    
+    <div class="col-7" style="text-align:justify;">
+        <h3 class="colorBlue">Customs Valuation Methods</h3>
+        <p>Customs duties can be designated in either specific or ad valorem terms or as a mix of the two;</p>
+        <p>In case of a specific duty, a concrete sum is charged for a quantitative description of the good, for example Ushs.1per item or per unit. The customs value of the good does not need to be determined, as the duty is not based on the value of the good but on other criteria</p>
+        <p>In this case, no rules on customs valuation are needed and the Valuation Agreement does not apply. In contrast, an advalorem duty depends on the value of a good. Under this system, the customs valuation is multiplied by an advalorem rate of duty (e.g.5 percent) in order to arrive at the amount of duty payable on an imported item</p>
+        <p>Customs valuation is a customs procedure applied to determine the customs value of imported goods. If the rate of duty is ad valorem, the customs value is essential to determine the duty to be paid on an imported good.</p>
+        <p>The Agreement stipulates that customs valuation shall, except in specified circumstances, be based on the actual price of the goods to be valued, which is generally shown on the invoice. this price, plus adjustments for certain elements listed in article8 of the GATT 1994, equals the transaction value, which constitutes the first and most important method of valuation referred to in the agreement.</p>
+        <p>Six methods of Custom Valuation (Sec 37,122 & 4thSchedule of the EACCMA)</p>
+        <ul>
+            <li>Method 1 Transaction value </li>
+            <li>Method 2 Transaction value of identical goods</li>
+            <li>Method 3 Transaction value of similar goods</li>
+            <li>Method 4 Deductive method</li>
+            <li>Method 5 Computed method</li>
+            <li>Method 6 Fall-back (Residual Method)</li>
+        </ul>
+        <h5 class="colorBlue">Method 1 Transaction value</h5>
+        <p>The price actually paid or payable is the total payment made or to be made by the buyer to or for the benefit of the seller of the imported goods, and includes all payments made as a condition of sale of the imported goods by the buyer to the seller, or by the buyer to a third party to satisfy an obligation of the seller.</p>
+        <h5 style="color:darkblue">Conditions to be fulfilled;</h5>
+        <ul>
+            <li>There must be no restriction on the disposition or use of the goods by the buyer, other than restrictions which;</li>
+            <li>Are imposed or required by law in the country of importation;</li>
+            <li>Are limited to the geographic area in which the goods may be resold;</li>
+            <li>Do not substantially affect the value of the goods.</li>
+            <li>There must be evidence of a sale for export to the country of importation (i.e. commercial invoices, contracts, purchase orders, etc.)</li>
+            <li>No part of the proceeds of any subsequent resale, disposal or use of the goods by the buyer will accrue directly or indirectly to the seller, unless adjustment can be made in accordance with provisions in Article VIII of the GATT.</li>
+            <li>
+                The buyer and seller are not related, but even if so, the use of the transaction value is acceptable if the importer demonstrates that:
+                <ul>
+                    <li>The relationship did not influence the price, or the transaction value closely approximates a test value</li>
+                </ul>
+            </li>
+        </ul>
+        <h5 class="colorBlue">Method 2 Transaction value of identical goods</h5>
+        <p>The transaction value is calculated in the same manner on identical goods if the goods are</p>
+        <ul>
+            <li>The same in all respects including physical characteristics, quality, and reputation;</li>
+            <li>Produced in the same country as the goods being valued;</li>
+            <li>And produced by the producer of the goods being valued.</li>
+        </ul>
+        <p>For this method to be used, the goods must be sold for export to the same country of importation as the goods being valued. The goods must also be exported at or about the same time as the goods being valued</p>
+        <h5 class="colorBlue">Method 3 Transaction value of similar goods </h5>
+        <p>The transaction value is calculated in the same manner on similar goods if;</p>
+        <ul>
+            <li>Goods closely resembling the goods being valued in terms of component materials and characteristics.</li>
+            <li>Goods which are capable of performing the same functions and are commercially interchangeable with the goods being valued.</li>
+            <li>Goods which are produced in the same country as and by the producer of the goods being valued. For this method to be used, the goods must be sold to the same country of importation as the goods being valued. The goods must be exported at or about the same time as the goods being valued.</li>
+        </ul>
+        <h5 class="colorBlue">Method 4 Deductive value</h5>
+        <h5 style="color:darkblue">Deduction of value from the price of the greatest aggregate quantity sold;</h5>
+        <p>The Agreement provides that when customs value cannot be determined on the basis of the transaction value of the imported goods or identical or similar goods, it will be determined on the basis of the unit price at which the imported goods or identical or similar goods are sold to an unrelated buyer in the greatest aggregate quantity in the country of importation.</p>
+        <p>The buyer and the seller in the importing country must not be related and the sale must take place at or about the time of importation of the goods being valued. If no sale took place at or about the time of importation, it is permitted to use sales up to 90days after importation of the goods being valued. The price per unit is the price at which the greatest number of units is sold.</p>
+        <p>The greatest aggregate quantity is the price at which the greatest number of units is sold to unrelated persons at the first commercial level after importation at which such sales take place. To determine the greatest aggregate quantity all sales at a given price are taken together and the sum of all the units of goods sold at that price is compared to the sum of all the units of goods sold at any other price. The greatest number of units sold at one price represents the greatest aggregate quantity.</p>
+        <h5 class="colorBlue">Method 5 Computed value</h5>
+        <p>This method, determines the customs value on the basis of the cost of production of the goods being valued, plus an amount for profit and general expenses usually reflected in sales from the country of exportation to the country of importation of goods of the same class or kind.</p>
+        <h5 class="colorBlue">Method 6 Fall-back method </h5>
+        <p>When the customs value cannot be determined under any of the previous methods, it may be determined using reasonable means consistent with the principles and general provisions of the Agreement and of Article VII of GATT, and on the basis of data available in the country of importation. To the greatest extent possible, this method should be based on previously determined values and methods with a reasonable degree of flexibility in their application.</p>
+    </div>
+</center>
+
+
+@code {
+
+}
