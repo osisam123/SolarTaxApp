@@ -44,7 +44,7 @@ namespace SolarTaxApp.Server.Controllers
         public IActionResult AddClassification(StateTb state)
         {
             _state.AddState(state);
-            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + state.StateId, state);
+            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + state.Stateid, state);
         }
 
         [HttpDelete]
@@ -68,7 +68,7 @@ namespace SolarTaxApp.Server.Controllers
             if (Existingstate != null)
             {
                 Existingstate.Code = state.Code;
-                Existingstate.StateName = state.StateName;
+                Existingstate.Statename = state.Statename;
                 Existingstate.Flag = state.Flag;
 
                 _state.EditState(Existingstate);

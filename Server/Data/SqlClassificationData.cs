@@ -15,7 +15,7 @@ namespace SolarTaxApp.Server.Data
         }
         public ClassificationTb AddClassification(ClassificationTb classification)
         {
-            classification.ClassificationId = Guid.NewGuid().ToString();
+            classification.Classificationid = Guid.NewGuid().ToString();
             _context.ClassificationTbs.Add(classification);
             _context.SaveChanges();
             return classification;
@@ -29,14 +29,14 @@ namespace SolarTaxApp.Server.Data
 
         public ClassificationTb EditClassification(ClassificationTb classification)
         {
-            var existingClassification = _context.ClassificationTbs.Find(classification.ClassificationId);
+            var existingClassification = _context.ClassificationTbs.Find(classification.Classificationid);
             if (existingClassification != null)
             {
-                existingClassification.CategoryId = classification.CategoryId;
-                existingClassification.SolarModularCapacity = classification.SolarModularCapacity;
+                existingClassification.Categoryid = classification.Categoryid;
+                existingClassification.Solarmodularcapacity = classification.Solarmodularcapacity;
                 existingClassification.Description = classification.Description;
-                existingClassification.IllustrationUrl = classification.IllustrationUrl;
-                existingClassification.HsCode = classification.HsCode;
+                existingClassification.Illustrationurl = classification.Illustrationurl;
+                existingClassification.Hscode = classification.Hscode;
                 _context.ClassificationTbs.Update(existingClassification);
                 _context.SaveChanges();
             }

@@ -67,10 +67,10 @@ namespace SolarTaxApp.Server.Controllers
             var Existingtreat = _treatement.GetTaxTreatement(id);
             if (Existingtreat != null)
             {
-                Existingtreat.ClassificationId = treat.ClassificationId;
-                Existingtreat.TaxId = treat.TaxId;
-                Existingtreat.StateId = treat.StateId;
-                Existingtreat.TaxPercentage = treat.TaxPercentage;
+                Existingtreat.Classificationid = treat.Classificationid;
+                Existingtreat.Taxid = treat.Taxid;
+                Existingtreat.Stateid = treat.Stateid;
+                Existingtreat.Taxpercentage = treat.Taxpercentage;
 
                 _treatement.EditTaxTreatement(Existingtreat);
                 return Ok(treat);

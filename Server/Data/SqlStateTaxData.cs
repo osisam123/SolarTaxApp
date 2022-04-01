@@ -17,27 +17,27 @@ namespace SolarTaxApp.Server.Data
         public List<StateTaxTreatement> GetStateTax()
         {
             var stateTax = from a in _context.TaxTreatementTbs
-                           join b in _context.ClassificationTbs on a.ClassificationId equals b.ClassificationId
-                           join e in _context.CategoryTbs on b.CategoryId equals e.CategoryId
-                           join c in _context.TaxTbs on a.TaxId equals c.TaxId
-                           join d in _context.StateTbs on a.StateId equals d.StateId
+                           join b in _context.ClassificationTbs on a.Classificationid equals b.Classificationid
+                           join e in _context.CategoryTbs on b.Categoryid equals e.Categoryid
+                           join c in _context.TaxTbs on a.Taxid equals c.Taxid
+                           join d in _context.StateTbs on a.Stateid equals d.Stateid
                            select new StateTaxTreatement()
                            {
                                Id = a.Id,
-                               CategoryName = e.CategoryName,
-                               Classificationid = a.ClassificationId,
-                               SolarModularCapacity = b.SolarModularCapacity,
+                               CategoryName = e.Categoryname,
+                               Classificationid = a.Classificationid,
+                               SolarModularCapacity = b.Solarmodularcapacity,
                                Description = b.Description,
-                               Illustration = e.ImageUrl,
-                               ImageUrl = b.IllustrationUrl,
-                               HSCode = b.HsCode,
-                               Taxid = c.TaxId,
+                               Illustration = e.Imageurl,
+                               ImageUrl = b.Illustrationurl,
+                               HSCode = b.Hscode,
+                               Taxid = c.Taxid,
                                TaxName = c.TaxName,
-                               TaxCode = c.TaxCode,
-                               Stateid = a.StateId,
+                               TaxCode = c.Taxcode,
+                               Stateid = a.Stateid,
                                StateCode = d.Code,
-                               StateName = d.StateName,
-                               Taxpercentage = a.TaxPercentage
+                               StateName = d.Statename,
+                               Taxpercentage = a.Taxpercentage
                            };
             return stateTax.ToList();
         }
@@ -45,28 +45,28 @@ namespace SolarTaxApp.Server.Data
         public StateTaxTreatement GetStateTax(string id)
         {
             var stateTax = from a in _context.TaxTreatementTbs
-                           join b in _context.ClassificationTbs on a.ClassificationId equals b.ClassificationId
-                           join e in _context.CategoryTbs on b.CategoryId equals e.CategoryId
-                           join c in _context.TaxTbs on a.TaxId equals c.TaxId
-                           join d in _context.StateTbs on a.StateId equals d.StateId
+                           join b in _context.ClassificationTbs on a.Classificationid equals b.Classificationid
+                           join e in _context.CategoryTbs on b.Categoryid equals e.Categoryid
+                           join c in _context.TaxTbs on a.Taxid equals c.Taxid
+                           join d in _context.StateTbs on a.Stateid equals d.Stateid
                            where a.Id == id
                            select new StateTaxTreatement()
                            {
                                Id = a.Id,
-                               CategoryName = e.CategoryName,
-                               Classificationid = a.ClassificationId,
-                               SolarModularCapacity = b.SolarModularCapacity,
+                               CategoryName = e.Categoryname,
+                               Classificationid = a.Classificationid,
+                               SolarModularCapacity = b.Solarmodularcapacity,
                                Description = b.Description,
-                               Illustration = e.ImageUrl,
-                               ImageUrl = b.IllustrationUrl,
-                               HSCode = b.HsCode,
-                               Taxid = c.TaxId,
+                               Illustration = e.Imageurl,
+                               ImageUrl = b.Illustrationurl,
+                               HSCode = b.Hscode,
+                               Taxid = c.Taxid,
                                TaxName = c.TaxName,
-                               TaxCode = c.TaxCode,
-                               Stateid = a.StateId,
+                               TaxCode = c.Taxcode,
+                               Stateid = a.Stateid,
                                StateCode = d.Code,
-                               StateName = d.StateName,
-                               Taxpercentage = a.TaxPercentage
+                               StateName = d.Statename,
+                               Taxpercentage = a.Taxpercentage
                            };
             return stateTax.FirstOrDefault();
         }
@@ -74,35 +74,35 @@ namespace SolarTaxApp.Server.Data
         public List<StateTaxTreatement> GetStateTaxSearch(string tax)
         {
             var stateTax = from a in _context.TaxTreatementTbs
-                           join b in _context.ClassificationTbs on a.ClassificationId equals b.ClassificationId
-                           join e in _context.CategoryTbs on b.CategoryId equals e.CategoryId
-                           join c in _context.TaxTbs on a.TaxId equals c.TaxId
-                           join d in _context.StateTbs on a.StateId equals d.StateId
-                           where b.SolarModularCapacity.ToLower().Contains(tax.ToLower())
+                           join b in _context.ClassificationTbs on a.Classificationid equals b.Classificationid
+                           join e in _context.CategoryTbs on b.Categoryid equals e.Categoryid
+                           join c in _context.TaxTbs on a.Taxid equals c.Taxid
+                           join d in _context.StateTbs on a.Stateid equals d.Stateid
+                           where b.Solarmodularcapacity.ToLower().Contains(tax.ToLower())
                            || b.Description.ToLower().Contains(tax.ToLower())
-                           || b.HsCode.ToLower().Contains(tax.ToLower())
+                           || b.Hscode.ToLower().Contains(tax.ToLower())
                            || c.TaxName.ToLower() == tax.ToLower()
-                           || c.TaxCode.ToLower() == tax.ToLower()
+                           || c.Taxcode.ToLower() == tax.ToLower()
                            || d.Code.ToLower() == tax.ToLower()
-                           || d.StateName.ToLower() == tax.ToLower()
-                           || e.CategoryName.ToLower() == tax.ToLower()
+                           || d.Statename.ToLower() == tax.ToLower()
+                           || e.Categoryname.ToLower() == tax.ToLower()
                            select new StateTaxTreatement()
                            {
                                Id = a.Id,
-                               CategoryName = e.CategoryName,
-                               Classificationid = a.ClassificationId,
-                               SolarModularCapacity = b.SolarModularCapacity,
+                               CategoryName = e.Categoryname,
+                               Classificationid = a.Classificationid,
+                               SolarModularCapacity = b.Solarmodularcapacity,
                                Description = b.Description,
-                               Illustration = e.ImageUrl,
-                               ImageUrl = b.IllustrationUrl,
-                               HSCode = b.HsCode,
-                               Taxid = c.TaxId,
+                               Illustration = e.Imageurl,
+                               ImageUrl = b.Illustrationurl,
+                               HSCode = b.Hscode,
+                               Taxid = c.Taxid,
                                TaxName = c.TaxName,
-                               TaxCode = c.TaxCode,
-                               Stateid = a.StateId,
+                               TaxCode = c.Taxcode,
+                               Stateid = a.Stateid,
                                StateCode = d.Code,
-                               StateName = d.StateName,
-                               Taxpercentage = a.TaxPercentage
+                               StateName = d.Statename,
+                               Taxpercentage = a.Taxpercentage
                            };
             return stateTax.ToList();
         }
@@ -116,59 +116,59 @@ namespace SolarTaxApp.Server.Data
             if (words[0] != null && words[1] != null && words[2] != null)
             {
                 stateTax = from a in _context.TaxTreatementTbs
-                           join b in _context.ClassificationTbs on a.ClassificationId equals b.ClassificationId
-                           join e in _context.CategoryTbs on b.CategoryId equals e.CategoryId
-                           join c in _context.TaxTbs on a.TaxId equals c.TaxId
-                           join d in _context.StateTbs on a.StateId equals d.StateId
-                           where b.HsCode.Contains(words[2].ToString())
-                           && d.StateId.Contains(words[0].ToString())
-                           && c.TaxId.Contains(words[1].ToString())
+                           join b in _context.ClassificationTbs on a.Classificationid equals b.Classificationid
+                           join e in _context.CategoryTbs on b.Categoryid equals e.Categoryid
+                           join c in _context.TaxTbs on a.Taxid equals c.Taxid
+                           join d in _context.StateTbs on a.Stateid equals d.Stateid
+                           where b.Hscode.Contains(words[2].ToString())
+                           && d.Stateid.Contains(words[0].ToString())
+                           && c.Taxid.Contains(words[1].ToString())
                            select new StateTaxTreatement()
                            {
                                Id = a.Id,
-                               CategoryName = e.CategoryName,
-                               Classificationid = a.ClassificationId,
-                               SolarModularCapacity = b.SolarModularCapacity,
+                               CategoryName = e.Categoryname,
+                               Classificationid = a.Classificationid,
+                               SolarModularCapacity = b.Solarmodularcapacity,
                                Description = b.Description,
-                               Illustration = e.ImageUrl,
-                               ImageUrl = b.IllustrationUrl,
-                               HSCode = b.HsCode,
-                               Taxid = c.TaxId,
+                               Illustration = e.Imageurl,
+                               ImageUrl = b.Illustrationurl,
+                               HSCode = b.Hscode,
+                               Taxid = c.Taxid,
                                TaxName = c.TaxName,
-                               TaxCode = c.TaxCode,
-                               Stateid = a.StateId,
+                               TaxCode = c.Taxcode,
+                               Stateid = a.Stateid,
                                StateCode = d.Code,
-                               StateName = d.StateName,
-                               Taxpercentage = a.TaxPercentage
+                               StateName = d.Statename,
+                               Taxpercentage = a.Taxpercentage
                            };
             }
             else 
             {
                 stateTax = from a in _context.TaxTreatementTbs
-                           join b in _context.ClassificationTbs on a.ClassificationId equals b.ClassificationId
-                           join e in _context.CategoryTbs on b.CategoryId equals e.CategoryId
-                           join c in _context.TaxTbs on a.TaxId equals c.TaxId
-                           join d in _context.StateTbs on a.StateId equals d.StateId
-                           where b.HsCode.Contains(words[2].ToString())
-                           || d.StateId.Contains(words[0].ToString())
-                           || c.TaxId.Contains(words[1].ToString())
+                           join b in _context.ClassificationTbs on a.Classificationid equals b.Classificationid
+                           join e in _context.CategoryTbs on b.Categoryid equals e.Categoryid
+                           join c in _context.TaxTbs on a.Taxid equals c.Taxid
+                           join d in _context.StateTbs on a.Stateid equals d.Stateid
+                           where b.Hscode.Contains(words[2].ToString())
+                           || d.Stateid.Contains(words[0].ToString())
+                           || c.Taxid.Contains(words[1].ToString())
                            select new StateTaxTreatement()
                            {
                                Id = a.Id,
-                               CategoryName = e.CategoryName,
-                               Classificationid = a.ClassificationId,
-                               SolarModularCapacity = b.SolarModularCapacity,
+                               CategoryName = e.Categoryname,
+                               Classificationid = a.Classificationid,
+                               SolarModularCapacity = b.Solarmodularcapacity,
                                Description = b.Description,
-                               Illustration = e.ImageUrl,
-                               ImageUrl = b.IllustrationUrl,
-                               HSCode = b.HsCode,
-                               Taxid = c.TaxId,
+                               Illustration = e.Imageurl,
+                               ImageUrl = b.Illustrationurl,
+                               HSCode = b.Hscode,
+                               Taxid = c.Taxid,
                                TaxName = c.TaxName,
-                               TaxCode = c.TaxCode,
-                               Stateid = a.StateId,
+                               TaxCode = c.Taxcode,
+                               Stateid = a.Stateid,
                                StateCode = d.Code,
-                               StateName = d.StateName,
-                               Taxpercentage = a.TaxPercentage
+                               StateName = d.Statename,
+                               Taxpercentage = a.Taxpercentage
                            };
             }
                 

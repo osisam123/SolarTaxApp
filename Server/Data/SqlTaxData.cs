@@ -15,7 +15,7 @@ namespace SolarTaxApp.Server.Data
         }
         public TaxTb AddTax(TaxTb tax)
         {
-            tax.TaxId = Guid.NewGuid().ToString();
+            tax.Taxid = Guid.NewGuid().ToString();
             _context.TaxTbs.Add(tax);
             _context.SaveChanges();
             return tax;
@@ -29,10 +29,10 @@ namespace SolarTaxApp.Server.Data
 
         public TaxTb EditTax(TaxTb tax)
         {
-            var existingTax = _context.TaxTbs.Find(tax.TaxId);
+            var existingTax = _context.TaxTbs.Find(tax.Taxid);
             if (existingTax != null)
             {
-                existingTax.TaxCode = tax.TaxCode;
+                existingTax.Taxcode = tax.Taxcode;
                 existingTax.TaxName = tax.TaxName;
                 _context.TaxTbs.Update(existingTax);
                 _context.SaveChanges();

@@ -46,7 +46,7 @@ namespace SolarTaxApp.Server.Controllers
         public IActionResult AddClassification(ClassificationTb classification)
         {
             _classification.AddClassification(classification);
-            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + classification.ClassificationId, classification);
+            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + classification.Classificationid, classification);
         }
 
         [HttpDelete]
@@ -69,11 +69,11 @@ namespace SolarTaxApp.Server.Controllers
             var Existingclassification = _classification.GetClassification(id);
             if (Existingclassification != null)
             {
-                Existingclassification.CategoryId = classification.CategoryId;
-                Existingclassification.SolarModularCapacity = classification.SolarModularCapacity;
+                Existingclassification.Categoryid = classification.Categoryid;
+                Existingclassification.Solarmodularcapacity = classification.Solarmodularcapacity;
                 Existingclassification.Description = classification.Description;
-                Existingclassification.IllustrationUrl = classification.IllustrationUrl;
-                Existingclassification.HsCode = classification.HsCode;
+                Existingclassification.Illustrationurl = classification.Illustrationurl;
+                Existingclassification.Hscode = classification.Hscode;
 
                 _classification.EditClassification(Existingclassification);
                 return Ok(classification);

@@ -18,16 +18,16 @@ namespace SolarTaxApp.Server.Data
         {
             var classlist = from a in _context.ClassificationTbs
                             join b in _context.CategoryTbs
-                            on a.CategoryId equals b.CategoryId
+                            on a.Categoryid equals b.Categoryid
                             select new ClassificationList()
                             {
-                                ClassificationId = a.ClassificationId,
-                                CategoryId = a.CategoryId,
-                                Category = b.CategoryName,
-                                Solarmodularcapacity = a.SolarModularCapacity,
-                                Hscode = a.HsCode,
+                                ClassificationId = a.Classificationid,
+                                CategoryId = a.Categoryid,
+                                Category = b.Categoryname,
+                                Solarmodularcapacity = a.Solarmodularcapacity,
+                                Hscode = a.Hscode,
                                 Description = a.Description,
-                                Illustrationurl = a.IllustrationUrl                                
+                                Illustrationurl = a.Illustrationurl                                
                             };
             return classlist.ToList();
         }
@@ -36,17 +36,17 @@ namespace SolarTaxApp.Server.Data
         {
             var classlist = from a in _context.ClassificationTbs
                             join b in _context.CategoryTbs
-                            on a.CategoryId equals b.CategoryId
-                            where a.ClassificationId == id
+                            on a.Categoryid equals b.Categoryid
+                            where a.Classificationid == id
                             select new ClassificationList()
                             {
-                                ClassificationId = a.ClassificationId,
-                                CategoryId = a.CategoryId,
-                                Category = b.CategoryName,
-                                Solarmodularcapacity = a.SolarModularCapacity,
-                                Hscode = a.HsCode,
+                                ClassificationId = a.Classificationid,
+                                CategoryId = a.Categoryid,
+                                Category = b.Categoryname,
+                                Solarmodularcapacity = a.Solarmodularcapacity,
+                                Hscode = a.Hscode,
                                 Description = a.Description,
-                                Illustrationurl = a.IllustrationUrl
+                                Illustrationurl = a.Illustrationurl
                             };
             return classlist.FirstOrDefault();
         }

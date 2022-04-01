@@ -32,10 +32,10 @@ namespace SolarTaxApp.Server.Data
             var existingTaxTreatement = _context.TaxTreatementTbs.Find(taxTreatement.Id);
             if (existingTaxTreatement != null)
             {
-                existingTaxTreatement.ClassificationId = taxTreatement.ClassificationId;
-                existingTaxTreatement.TaxId = taxTreatement.TaxId;
-                existingTaxTreatement.StateId = taxTreatement.StateId;
-                existingTaxTreatement.TaxPercentage = taxTreatement.TaxPercentage;
+                existingTaxTreatement.Classificationid = taxTreatement.Classificationid;
+                existingTaxTreatement.Taxid = taxTreatement.Taxid;
+                existingTaxTreatement.Stateid = taxTreatement.Stateid;
+                existingTaxTreatement.Taxpercentage = taxTreatement.Taxpercentage;
                 _context.TaxTreatementTbs.Update(existingTaxTreatement);
                 _context.SaveChanges();
             }

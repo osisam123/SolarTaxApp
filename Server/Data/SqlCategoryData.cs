@@ -15,7 +15,7 @@ namespace SolarTaxApp.Server.Data
         }
         public CategoryTb AddCategory(CategoryTb category)
         {
-            category.CategoryId = Guid.NewGuid().ToString();
+            category.Categoryid = Guid.NewGuid().ToString();
             _context.CategoryTbs.Add(category);
             _context.SaveChanges();
             return category;
@@ -29,12 +29,12 @@ namespace SolarTaxApp.Server.Data
 
         public CategoryTb EditCategory(CategoryTb category)
         {
-            var existingCategory = _context.CategoryTbs.Find(category.CategoryId);
+            var existingCategory = _context.CategoryTbs.Find(category.Categoryid);
             if (existingCategory != null)
             {
-                existingCategory.CategoryName = category.CategoryName;
+                existingCategory.Categoryname = category.Categoryname;
                 existingCategory.CategoryDescription = category.CategoryDescription;
-                existingCategory.ImageUrl = category.ImageUrl;                
+                existingCategory.Imageurl = category.Imageurl;                
                 _context.CategoryTbs.Update(existingCategory);
                 _context.SaveChanges();
             }

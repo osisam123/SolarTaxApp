@@ -44,7 +44,7 @@ namespace SolarTaxApp.Server.Controllers
         public IActionResult AddCategory(CategoryTb category)
         {
             _category.AddCategory(category);
-            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + category.CategoryId, category);
+            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + category.Categoryid, category);
         }
 
         [HttpDelete]
@@ -67,9 +67,9 @@ namespace SolarTaxApp.Server.Controllers
             var Existingcategory = _category.GetCategory(id);
             if (Existingcategory != null)
             {
-                Existingcategory.CategoryName = category.CategoryName;
+                Existingcategory.Categoryname = category.Categoryname;
                 Existingcategory.CategoryDescription = category.CategoryDescription;
-                Existingcategory.ImageUrl = category.ImageUrl;
+                Existingcategory.Imageurl = category.Imageurl;
                 
                 _category.EditCategory(Existingcategory);
                 return Ok(category);

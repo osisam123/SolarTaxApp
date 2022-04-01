@@ -44,7 +44,7 @@ namespace SolarTaxApp.Server.Controllers
         public IActionResult AddTax(TaxTb tax)
         {
             _tax.AddTax(tax);
-            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + tax.TaxId, tax);
+            return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + tax.Taxid, tax);
         }
 
         [HttpDelete]
@@ -67,7 +67,7 @@ namespace SolarTaxApp.Server.Controllers
             var Existingtax = _tax.GetTax(id);
             if (Existingtax != null)
             {
-                Existingtax.TaxCode = tax.TaxCode;
+                Existingtax.Taxcode = tax.Taxcode;
                 Existingtax.TaxName = tax.TaxName;
 
                 _tax.EditTax(Existingtax);

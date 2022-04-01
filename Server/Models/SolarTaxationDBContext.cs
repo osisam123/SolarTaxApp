@@ -2,6 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
 namespace SolarTaxApp.Server.Models
 {
     public partial class SolarTaxationDBContext : DbContext
@@ -21,14 +25,12 @@ namespace SolarTaxApp.Server.Models
         public virtual DbSet<TaxTb> TaxTbs { get; set; }
         public virtual DbSet<TaxTreatementTb> TaxTreatementTbs { get; set; }
         public virtual DbSet<UserTb> UserTbs { get; set; }
-        public virtual DbSet<ViewTaxTreatement> ViewTaxTreatements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("data source=(local);initial catalog=SolarTaxationDB;Trusted_Connection=yes;");
+                optionsBuilder.UseSqlite("Name=solartax");
             }
         }
 
@@ -36,175 +38,122 @@ namespace SolarTaxApp.Server.Models
         {
             modelBuilder.Entity<CategoryTb>(entity =>
             {
-                entity.HasKey(e => e.CategoryId);
+                entity.HasKey(e => e.Categoryid);
 
                 entity.ToTable("CategoryTB");
 
-                entity.Property(e => e.CategoryId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Categoryid).HasColumnName("categoryid");
 
-                entity.Property(e => e.CategoryDescription).IsUnicode(false);
+                entity.Property(e => e.CategoryDescription).HasColumnName("categoryDescription");
 
-                entity.Property(e => e.CategoryName).IsUnicode(false);
+                entity.Property(e => e.Categoryname)
+                    .IsRequired()
+                    .HasColumnName("categoryname");
 
-                entity.Property(e => e.ImageUrl).HasColumnType("text");
+                entity.Property(e => e.Imageurl).HasColumnName("imageurl");
             });
 
             modelBuilder.Entity<ClassificationTb>(entity =>
             {
-                entity.HasKey(e => e.ClassificationId);
+                entity.HasKey(e => e.Classificationid);
 
                 entity.ToTable("ClassificationTB");
 
-                entity.Property(e => e.ClassificationId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Classificationid).HasColumnName("classificationid");
 
-                entity.Property(e => e.CategoryId)
+                entity.Property(e => e.Categoryid)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasColumnName("categoryid");
 
-                entity.Property(e => e.Description).IsUnicode(false);
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasColumnName("description");
 
-                entity.Property(e => e.HsCode).IsUnicode(false);
+                entity.Property(e => e.Hscode)
+                    .IsRequired()
+                    .HasColumnName("hscode");
 
-                entity.Property(e => e.IllustrationUrl).HasColumnType("text");
+                entity.Property(e => e.Illustrationurl)
+                    .IsRequired()
+                    .HasColumnName("illustrationurl");
 
-                entity.Property(e => e.SolarModularCapacity).IsUnicode(false);
+                entity.Property(e => e.Solarmodularcapacity)
+                    .IsRequired()
+                    .HasColumnName("solarmodularcapacity");
             });
 
             modelBuilder.Entity<StateTb>(entity =>
             {
-                entity.HasKey(e => e.StateId);
+                entity.HasKey(e => e.Stateid);
 
                 entity.ToTable("StateTB");
 
-                entity.Property(e => e.StateId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Stateid).HasColumnName("stateid");
 
-                entity.Property(e => e.Code).IsUnicode(false);
+                entity.Property(e => e.Code)
+                    .IsRequired()
+                    .HasColumnName("code");
 
                 entity.Property(e => e.Flag).HasColumnName("flag");
 
-                entity.Property(e => e.StateName).IsUnicode(false);
+                entity.Property(e => e.Statename)
+                    .IsRequired()
+                    .HasColumnName("statename");
             });
 
             modelBuilder.Entity<TaxTb>(entity =>
             {
-                entity.HasKey(e => e.TaxId);
+                entity.HasKey(e => e.Taxid);
 
                 entity.ToTable("TaxTB");
 
-                entity.Property(e => e.TaxId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Taxid).HasColumnName("taxid");
 
-                entity.Property(e => e.TaxCode).IsUnicode(false);
+                entity.Property(e => e.TaxName).IsRequired();
 
-                entity.Property(e => e.TaxName).IsUnicode(false);
+                entity.Property(e => e.Taxcode)
+                    .IsRequired()
+                    .HasColumnName("taxcode");
             });
 
             modelBuilder.Entity<TaxTreatementTb>(entity =>
             {
                 entity.ToTable("TaxTreatementTB");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.ClassificationId)
+                entity.Property(e => e.Classificationid)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasColumnName("classificationid");
 
-                entity.Property(e => e.StateId)
+                entity.Property(e => e.Stateid)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasColumnName("stateid");
 
-                entity.Property(e => e.TaxId)
+                entity.Property(e => e.Taxid)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasColumnName("taxid");
 
-                entity.Property(e => e.TaxPercentage)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Taxpercentage)
+                    .IsRequired()
+                    .HasColumnName("taxpercentage");
             });
 
             modelBuilder.Entity<UserTb>(entity =>
             {
                 entity.HasKey(e => e.UserId);
 
-                entity.ToTable("UserTb");
+                entity.ToTable("UserTB");
 
-                entity.Property(e => e.UserId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.UserId).HasColumnName("UserID");
 
-                entity.Property(e => e.FirstName).HasColumnType("text");
+                entity.Property(e => e.FirstName).IsRequired();
 
-                entity.Property(e => e.LastName).HasColumnType("text");
+                entity.Property(e => e.LastName).IsRequired();
 
-                entity.Property(e => e.Password).HasColumnType("text");
+                entity.Property(e => e.Password).IsRequired();
 
-                entity.Property(e => e.UserName).HasColumnType("text");
-            });
-
-            modelBuilder.Entity<ViewTaxTreatement>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("ViewTaxTreatement");
-
-                entity.Property(e => e.CategoryName).IsUnicode(false);
-
-                entity.Property(e => e.ClassificationId)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Code).IsUnicode(false);
-
-                entity.Property(e => e.Description).IsUnicode(false);
-
-                entity.Property(e => e.HsCode).IsUnicode(false);
-
-                entity.Property(e => e.Id)
-                    .IsRequired()
-                    .HasColumnName("ID")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IllustrationUrl).HasColumnType("text");
-
-                entity.Property(e => e.ImageUrl).HasColumnType("text");
-
-                entity.Property(e => e.SolarModularCapacity).IsUnicode(false);
-
-                entity.Property(e => e.StateId)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.StateName).IsUnicode(false);
-
-                entity.Property(e => e.TaxCode).IsUnicode(false);
-
-                entity.Property(e => e.TaxId)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TaxName).IsUnicode(false);
-
-                entity.Property(e => e.TaxPercentage)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.UserName).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);
