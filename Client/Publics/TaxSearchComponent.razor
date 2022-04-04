@@ -50,8 +50,8 @@
         </div>
         <br />
         <br />
-        <div class="col-12">
-            <table class="table table-sm table-active">
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-hover">
                 <thead>
                     <tr>
                         <th>Category</th>
@@ -68,11 +68,11 @@
                     @foreach (var statetax in stateTaxList)
                     {
 
-                        <tr>
-                            <td><h6>@statetax.CategoryName</h6><img src="@statetax.Illustration" class="img-fluid" /></td>
+                        <tr style="font-size:12px; text-align:justify;">
+                            <td><h6>@statetax.CategoryName</h6><img src="@statetax.Illustration" class="img-fluid" style="width:2em;" /></td>
                             <td>@statetax.SolarModularCapacity</td>
                             <td>@statetax.Description</td>
-                            <td><img src="@statetax.ImageUrl" class="img-fluid" /></td>
+                            <td><img src="@statetax.ImageUrl" class="img-fluid" style="width:2em;" /></td>
                             <td>@statetax.HSCode</td>
                             <td>@statetax.StateCode</td>
                             <td>@statetax.TaxName (@statetax.TaxCode)</td>

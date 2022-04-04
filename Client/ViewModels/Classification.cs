@@ -19,12 +19,12 @@ namespace SolarTaxApp.Client.ViewModels
         {
             return new Classification
             {
-                Categoryid = classification.CategoryId,
-                Classificationid = classification.ClassificationId,
-                Solarmodularcapacity = classification.SolarModularCapacity,
+                Categoryid = classification.Categoryid,
+                Classificationid = classification.Classificationid,
+                Solarmodularcapacity = classification.Solarmodularcapacity,
                 Description = classification.Description,
-                Hscode = classification.HsCode,
-                Illustrationurl  = classification.IllustrationUrl
+                Hscode = classification.Hscode,
+                Illustrationurl  = classification.Illustrationurl
             };
         }
 
@@ -32,12 +32,12 @@ namespace SolarTaxApp.Client.ViewModels
         {
             return new ClassificationTb
             {
-                CategoryId = classification.Categoryid,
-                ClassificationId = classification.Classificationid,
-                SolarModularCapacity = classification.Solarmodularcapacity,
+                Categoryid = classification.Categoryid,
+                Classificationid = classification.Classificationid,
+                Solarmodularcapacity = classification.Solarmodularcapacity,
                 Description = classification.Description,
-                HsCode = classification.Hscode,
-                IllustrationUrl = classification.Illustrationurl
+                Hscode = classification.Hscode,
+                Illustrationurl = classification.Illustrationurl
             };
         }
     }

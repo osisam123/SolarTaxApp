@@ -61,25 +61,15 @@ namespace SolarTaxApp.Server.Models
 
                 entity.Property(e => e.Classificationid).HasColumnName("classificationid");
 
-                entity.Property(e => e.Categoryid)
-                    .IsRequired()
-                    .HasColumnName("categoryid");
+                entity.Property(e => e.Categoryid).HasColumnName("categoryid");
 
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .HasColumnName("description");
+                entity.Property(e => e.Description).HasColumnName("description");
 
-                entity.Property(e => e.Hscode)
-                    .IsRequired()
-                    .HasColumnName("hscode");
+                entity.Property(e => e.Hscode).HasColumnName("hscode");
 
-                entity.Property(e => e.Illustrationurl)
-                    .IsRequired()
-                    .HasColumnName("illustrationurl");
+                entity.Property(e => e.Illustrationurl).HasColumnName("illustrationurl");
 
-                entity.Property(e => e.Solarmodularcapacity)
-                    .IsRequired()
-                    .HasColumnName("solarmodularcapacity");
+                entity.Property(e => e.Solarmodularcapacity).HasColumnName("solarmodularcapacity");
             });
 
             modelBuilder.Entity<StateTb>(entity =>
@@ -122,21 +112,13 @@ namespace SolarTaxApp.Server.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Classificationid)
-                    .IsRequired()
-                    .HasColumnName("classificationid");
+                entity.Property(e => e.Classificationid).HasColumnName("classificationid");
 
-                entity.Property(e => e.Stateid)
-                    .IsRequired()
-                    .HasColumnName("stateid");
+                entity.Property(e => e.Stateid).HasColumnName("stateid");
 
-                entity.Property(e => e.Taxid)
-                    .IsRequired()
-                    .HasColumnName("taxid");
+                entity.Property(e => e.Taxid).HasColumnName("taxid");
 
-                entity.Property(e => e.Taxpercentage)
-                    .IsRequired()
-                    .HasColumnName("taxpercentage");
+                entity.Property(e => e.Taxpercentage).HasColumnName("taxpercentage");
             });
 
             modelBuilder.Entity<UserTb>(entity =>
