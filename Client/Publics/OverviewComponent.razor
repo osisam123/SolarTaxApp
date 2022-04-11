@@ -4,395 +4,407 @@
 @using SolarTaxApp.Client.ViewModels
 @inject StateContainer stateContainer
 
-    <center>
-        <div class="col-8">
-            <div>
-                <img src="" />
-            </div>
-            <div>
-                <h5 class="titleColor">Corporation Tax</h5>
-                <table class="table-bordered" style="width: 100%">
-                    <thead>
-                        <tr class="colorBlue">
-                            <th style="width: 20%">
-                                EAC State
-                            </th>
-                            <th style="width: 20%">
-                                Corporation Tax Rate
-                            </th>
-                            <th style="width: 60%">
-                                Corporation Tax Highlights
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="contentColor">
-                        @if (stateContainer.FocusCodeProperty == "UG")
-                        {
-                            <tr>
-                                <td class="lightGreen">
-                                    Uganda
-                                </td>
-                                <td>
-                                    30%
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>Solar companies are required to comply with corporation tax obligations. Uganda’s corporation tax regime is governed by the Income Tax Act Cap 340 (ITA). </li>
-                                        <li>A company is a tax resident in Uganda for a year of income: if it is incorporated under Ugandan law; the management and control of its affairs are exercised in Uganda; or the majority of its operations are carried out in Uganda. </li>
-                                        <li>A resident corporate entity is subject to tax on its worldwide income. A non-resident person is subject to tax only on Uganda-sourced income. </li>
-                                        <li>Under the ITA, taxable income includes profits, gains, dividends, interest and non-monetary benefits, advantages or facilities obtained through gainful means etc.  </li>
-                                        <li>Expenditure and losses incurred by a company during the year of income are deductible from taxable income to the extent to which they were incurred in the production of income included in gross income. </li>
-                                        <li>A provisional income tax return must be filed within 6 months of the commencement of the company’s accounting year and an amendment to the return may be submitted by the end of the accounting year if the estimated tax liability is revised.  </li>
-                                        <li>The estimated tax for the year is payable in two installments: before the end of the first 6-month period and; before the company’s year-end.  </li>
-                                        <li>A final return and balance payment is due within 6 months after the company’s year-end.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "KY")
-                        {
-                            <tr>
-                                <td class="lightGreen">
-                                    Kenya
-                                </td>
-                                <td>
-                                    25%, With branches of foreign companies taxed at a rate of 37.5%
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>A company or similar corporate entity is a tax resident in Kenya: if it is incorporated under Kenyan law; if management and control of its affairs are exercised in Kenya or if the Secretary of Finance declares the entity to be tax resident in a notice published in the Kenya gazette. </li>
-                                        <li>Resident and non-resident corporate entities are subject to tax on all income accruing in or derived from Kenya. </li>
-                                        <li>Income tax is imposed on a company’s gross income, less allowable deductions. In general, expenses must be incurred wholly and exclusively in the production of income and not be capital in nature to be deductible for tax purposes. </li>
-                                        <li>The tax rate for companies with a turnover lower than KES 50million is 1% of the turnover. </li>
-                                        <li>A 1% turnover minimum tax applies where a company’s tax liability is below 1% of its turnover.</li>
-                                        <li>The corporate tax year is based on the calendar year. However, companies may, under Section 27 of the Income Tax Act and with prior approval of the Commissioner, vary their accounting year. </li>
-                                        <li>Filing requirements – the self-assessment returns must be filed within six months of the end of a company’s accounting period. The return must be filed electronically using the online system (iTax).  </li>
-                                        <li>Tax installment payments are due within 20 days of the end of each quarter (except the first installment, which is due in the fourth month of the period), based on the relevant proportion of the estimated current tax or 110% of the tax for the previous year, less previous installments paid and withholding tax deducted at source. The balance of tax, if any, is due four months after the company’s year-end.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "TZ")
-                        {
-                            <tr>
-                                <td class="lightGreen">
-                                    Tanzania
-                                </td>
-                                <td>
-                                    30%
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>A company is resident in the United Republic of Tanzania: if it is incorporated, formed or established in Tanzania; or has its place of effective management (day to day management) in Tanzania. Subject to certain limited exemptions, Tanzanian resident companies and close corporations (companies) are taxed on their worldwide income as provided on Income Tax Act 2004 section 67. </li>
-                                        <li>Corporation Tax is a tax charged on the taxable incomes, profits from business undertakings and profits from conducting investments (except such dividends which are taxed differently as final taxes). Tax is also paid out of turnover of companies with perpetual unrelieved losses for three consecutive years. </li>
-                                        <li>The final returns shall be submitted within six months from the end of the accounting period. The return must be prepared or certified by a Certified Public Accountant in Public Practice who is approved by the National Board of Accountants and Auditors (NBAA).</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "RW")
-                        {
-                            <tr>
-                                <td class="lightGreen">
-                                    Rwanda
-                                </td>
-                                <td>
-                                    30%
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>The standard corporate income tax (CIT) rate is 30%. However, micro-enterprise companies (with turnover of less than 12 million Rwanda francs [RWF] in a tax period) pay flat tax amounts, and small businesses (whose turnover is between RWF 12 million and RWF 20 million in a tax period) pay a lump sum tax at the rate of 3% of turnover. </li>
-                                        <li>Rwanda operates both a source and residence-based taxation system. This means that any income that is deemed to be from sources within Rwanda will be liable to tax in Rwanda. In addition, resident entities are taxed on their worldwide income. However, where such income is taxed in another country, a tax credit is allowed, which does not exceed the tax that would have been payable on the same income in Rwanda. </li>
-                                        <li>Non-resident entities are taxed on income sourced in Rwanda through a permanent establishment (PE).</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "BI")
-                        {
-                            <tr>
-                                <td class="lightGreen">
-                                    Burundi
-                                </td>
-                                <td>
-                                    20%
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>The standard Corporate tax in Burundi is 30%. If a company makes a loss, then taxation is 1% of the annual turnover. Corporation income tax applies on a company’s income generated in Burundi, regardless of its residence. Resident companies are taxed on worldwide income; foreign companies are normally taxed only on Burundi-source income. </li>
-                                        <li>A company is resident in Burundi if it is registered under the laws of Burundi or has its effective management exercised Burundi at any time during the year</li>
-                                        <li>Tax is levied on profits derived by a company from the operation of a business. Capital gains/losses derived from the sale of an asset by a resident company are included in business/investment income and taxed at 30%.</li>
-                                        <li>Losses may be carried forward for five tax periods, but may not be carried back</li>
-                                        <li>The tax year in Burundi is the calendar year. The taxpayer may request a different 12-month period.</li>
-                                        <li>A self-assessment regime applies. The tax return must be filed and the corporate income tax must be paid no later than three months after the end of the applicable year-end (i.e. by 31 March of each year for calendar year taxpayers). Advance tax is payable in three instalments, each equivalent to 25% of the previous year’s corporate income tax liability. The prepayments are payable by 30 June, 30 September and 31 December of the relevant year, with the balance of the corporate income tax for the year payable by the date of submission of the annual corporate income tax return. If the prepayments are higher than the tax payable, the taxpayer can request a refund. Such request must be filed within two months from the submission of the return, and the refund, net of any other outstanding taxes due, must be granted within 60 calendar days from receipt of the application.</li>
-                                        <li>Branches in Burundi also pay corporation tax at a rate of 30% and there is no additional withholding tax on branch remittances.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "SS")
-                        {
-                            <tr>
-                                <td class="lightGreen">
-                                    South Sudan
-                                </td>
-                                <td>
-                                    Varied based on size of business
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>Tax rates for businesses in South Sudan depends on the revenue of the company. </li>
-                                        <li>Small businesses with revenue less than SSP 1 million are taxed at a rate of 10%, medium sized businesses with revenue between SSP 1 million and SSP 30 million are taxed at a rate of 20% and large businesses with revenue exceeding SSP 30 million are taxed at a rate of 25%. </li>
-                                        <li>Resident companies are liable to tax on their worldwide income; non-resident companies pay tax only on South Sudan-source profits. </li>
-                                        <li>A company, partnership or other entity established in South Sudan or that has its place of effective management in South Sudan is a resident. </li>
-                                        <li>Taxable income generally consists of worldwide income for resident companies (and business profits derived from South Sudan for non-resident companies), less expenditure incurred wholly and exclusively in the production of the income for the year. Dividends received from a resident company are considered South Sudan-source income and are included in business profits. However, dividends are exempt from taxation as business profits if tax has already been withheld on the dividends. Capital gains are considered South Sudansource income and are included in the taxable income subject to corporate tax </li>
-                                        <li>
-                                            Losses may be carried forward and set off against taxable income for up to five years. The carryback of losses is not permitted.
-                                        </li>
-                                        <li>A branch of a foreign company is subject to the same tax rate as a domestic subsidiary. There is no branch profits tax</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <br />
-            <br />
-            <div>
-                <h5 class="titleColor">Value Added Tax(VAT)</h5>
-                <table class="table-bordered" style="width: 100%">
-                    <thead>
-                        <tr class="colorBlue">
-                            <th style="width: 20%">EAC State</th>
-                            <th style="width: 20%">VAT Rate</th>
-                            <th style="width: 60%">VAT Highlights</th>
-                        </tr>
-                    </thead>
-                    <tbody class="contentColor">
-                        @if (stateContainer.FocusCodeProperty == "UG")
-                        {
-                            <tr>
-                                <td class="lightGreen">Uganda</td>
-                                <td>18% </td>
-                                <td>
-                                    <ul>
-                                        <li>VAT in Uganda is accounted for on accrual basis unless the tax payer gets permission from the commissioner to account for VAT on a cash basis. </li>
-                                        <li>Under the VAT Act, a supply of goods or services takes place on the earliest of the date on which; the goods are delivered or made available; or the performance of the service is completed; payment for the goods or services is made; or a tax invoice is issued. </li>
-                                        <li>A taxable person is allowed input VAT on taxable supplies made to the person and import of goods made by that person. </li>
-                                        <li>When a tax payer deals in the supply of both taxable and exempt supplies (like is the case with many solar companies), they are required to apportion the Input credit every month when filing a return and also make an end year adjustment at the end of each calendar year. </li>
-                                        <li>All taxable persons are required to file a return for every tax period (calendar month) and pay tax (if any) within 15 days after the end of the month. </li>
-                                        <li>Exempt Solar Supplies - Section 20 of the VATA states that an import of goods is an exempt import if the goods are exempt from customs duty under the Fifth Schedule of the EAC CMA 2004 except compact fluorescent bulbs with a power connecting cap at the end, and lamps and bulbs made from Light Emitting Diodes (LED) technology for domestic and industrial use or would be exempt had they been supplied in Uganda. </li>
-                                        <li>
-                                            Section 19 of the VATA, Cap 349 provides that a supply of goods or services is exempt if it is specified under the Second Schedule of the Act. Some of the goods in the schedule of the VAT Act relating to the solar industry include the following
-                                            <ul>
-                                                <li>The supply of photosensitive semiconductor devices, including photovoltaic devices, whether or not assembled in modules or made into panels; light emitting diodes, solar water heaters, solar refrigerators and solar cookers.</li>
-                                                <li>The supply of deep cycle batteries, composite lanterns and raw materials for the manufacture of deep cycle batteries and composite lanterns. </li>
-                                                <li>The supply of any goods and services to the contractors and subcontractors of solar power.</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "KY")
-                        {
-                            <tr>
-                                <td class="lightGreen">Kenya</td>
-                                <td>14%* </td>
-                                <td>
-                                    <ul>
-                                        <li>
-                                            In September 2016 the VAT Act 2013 was amended through the Finance Act 2016 to include provisions relating to the VAT treatment of solar equipment and accessories as follows:
-                                            <ul>
-                                                <li>Item 45 of the Part I of the First Schedule to the VAT Act 2013 provides VAT exemption on supply of “specialized solar equipment and accessories, including solar water heaters and deep cycle sealed batteries which exclusively use or store solar power”. </li>
-                                                <li>Item 48 of the same schedule which introduced VAT exemption on “inputs or raw materials supplied to solar equipment manufacturers for manufacture of solar equipment or deep cycle sealed batteries which exclusively use or store solar power as approved from time to time by the Cabinet Secretary for the National Treasury, upon recommendation by the Cabinet Secretary responsible for energy and petroleum”. </li>
-                                            </ul>
-                                        </li>
-                                        <li>The amendment to the Act, though welcomed by the industry, created a lack of clarity on the scope of the exemption. The phrase “specialized solar equipment and accessories which exclusively use or store solar power” was open to subjective interpretations as technological innovation continued to introduce new solar equipment to the market that exclusively used solar power. The industry adopted a wider interpretation and considered equipment such as solar powered TVs, radios, refrigerators, water pumps, cookers etc. exclusively designed to be powered by solar PV should be covered under the exemption. On the other hand, Kenya Revenue Authority (“KRA”) adopted the interpretation that equipment that could ‘technically’ only be powered by solar PV could qualify for exemption, thereby excluding any equipment or accessories that could potentially be powered by the grid (e.g. solar fridges, solar lanterns with a USB charging port etc)..), this difference in the interpretation resulted in the need for an amendment. </li>
-                                        <li>In September 2018, the First Schedule to the Kenyan VAT act amended item 45 of the act by removing of the word ‘’accessories’’ to limit the scope of VAT exemption to “Specialized equipment for the development and generation of solar and wind energy, including deep cycle batteries which use or store solar power”, thereby harmonizing the Kenya VAT exemption with the 2016 provisions of EACCMA. This effectively meant that accessories or appliances (e.g. TV, radio etc.), which use solar power would not qualify for exemption.  </li>
-                                        <li>The VAT return and any related payment are due by the 20th day of the following month. Agents appointed by the tax authorities are required to deduct 2% of the 14% VAT and remit the withheld VAT by the 20th day of the following month</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "TZ")
-                        {
-                            <tr>
-                                <td class="lightGreen">Tanzania</td>
-                                <td>18%</td>
-                                <td>
-                                    <ul>
-                                        <li>A taxable person is allowed input VAT on taxable supplies made to the person and import of goods made by that person. </li>
-                                        <li>Claiming of input tax on entertainment, sporting social or recreational clubs or associations and spare parts and repair or maintenance costs in respect of passenger vehicles is disallowed for VAT purposes. </li>
-                                        <li>Input tax claim time limit is maintained at six months. However, this time limit starts to run not only by reference to the date of the relevant supporting documentation (e.g. tax invoice, fiscal receipt etc.) but also by reference to the date of the time of supply. </li>
-                                        <li>Exempt Solar Supplies - VAT Act 2016 exempts the supply of solar panels, modules, solar charger controllers, solar inverter, solar lights, vacuum tube solar collectors and solar batteries from tax. </li>
-                                        <li>Currently VAT registered traders are supposed to submit returns to TRA online or in paper form. </li>
-                                        <li>VAT is payable on 20th day of the following month of the business that is a due date of submitting the return. If the 20th day falls on the Saturdays, Sunday, or public holiday the return shall be lodge on the first working day following the Saturdays, Sunday or Public day.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "RW")
-                        {
-                            <tr>
-                                <td class="lightGreen">Rwanda</td>
-                                <td>18%</td>
-                                <td>
-                                    <ul>
-                                        <li>Suppliers who provide zero-rated services or goods are entitled to recover input VAT incurred in making the supply. This is unlike exempt supplies, where input VAT recovery is not allowed. Therefore, zero rating is preferable to exemption. </li>
-                                        <li>Exempt Solar Supplies - exempt for VAT purposes means that no output VAT is charged on the goods or services, and no input VAT can be claimed. The list of exempt goods and services are detailed in Article 6 of Law N°37/2012 of 09/11/2012. Among these includes the energy supply equipment a) energy saving lamps; b) solar water-heaters; </li>
-                                        <li>The VAT returns and relevant payment are due to the Rwanda Revenue Authority (RRA) on a monthly basis by the 15th day of the following month. However, taxpayers with annual turnover of RWF 200 million or below may elect to file VAT returns or make payments on a quarterly or monthly basis.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "BI")
-                        {
-                            <tr>
-                                <td class="lightGreen">Burundi</td>
-                                <td>18%</td>
-                                <td>
-                                    <ul>
-                                        <li>VAT is applicable as follows 18% on ordinary goods and services; 10% on food products and farming inputs; 0% on exports and international transport </li>
-                                        <li>If a tax payer gets services from a person who is outside Burundi, the taxpayer is considered as if he/she has delivered taxable services and has received an output tax from that person residing outside Burundi as such must self-charge VAT on the payment made to the non-resident supplier and remit the VAT.</li>
-                                        <li>Declarations are made monthly, to be filed by the 15th day of the month following the VAT collection period. Payment is to be made when the declaration is filed. VAT on imports is paid at the time when the goods are released for consumption, as are customs duties.</li>
-                                        <li>The person reaches the threshold for registration in a given period if the total value of supplies of goods and services made, or to be made by the person during that period or part of this period is equal to or above one hundred million Burundian francs (100,000,000 Bif). The voluntary registration threshold is Bif twenty-four million (24,000,000 BIF)</li>
-                                        <li>If all goods or services supplied by a taxpayer during a value added tax period are taxable goods and services, the taxpayer is allowed a credit of the input tax paid in respect of taxable acquisitions or taxable imported goods during the tax period for the purposes of selling or delivering taxable goods and services. If a taxpayer imported goods part of which are exempted while others are taxable then the sum of input tax to be claimed will be the portion of the tax paid for the taxable goods in relation to the taxable business. No input tax is allowed if goods purchased in the country or taxable imported goods or services are for non-business use as well as for housing expenses or accommodation, reception, catering and travel expenses. </li>
-                                        <li>A registered person making supplies at the zero rate shall in all respects be treated as making a taxable supply</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
 
-                        @if (stateContainer.FocusCodeProperty == "SS")
-                        {
-                            <tr>
-                                <td class="lightGreen">South Sudan</td>
-                                <td>18%</td>
-                                <td>
-                                    <ul>
-                                        <li>South Sudan levies a sales tax rather than a VAT at a rate of 18% as per Taxation Act 2016 </li>
-                                        <li>The sales tax applies to manufacturers, importers and service providers in South Sudan. </li>
-                                        <li>Sales tax on imported goods is charged on all imports of goods into the Republic of South Sudan and the value on which the tax is assessed is the customs value, plus excise duty and customs duty.  </li>
-                                        <li>Small enterprises with revenue of less than SSP 1 million are zero rated </li>
-                                        <li>Input VAT is not allowed in South Sudan </li>
-                                        <li>Manufacturers and service providers are required to file a return and pay the tax not later than the 15th day of every month for the tax collected in the previous month. Persons importing goods are required to pay the sales tax due prior to importation or no later than the time of import at the border.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
 
-                    </tbody>
-                </table>
-            </div>
-            <br />
-            <br />
-            <div>
-                <h5 class="titleColor">Withholding Tax</h5>
-                <table class="table-bordered" style="width: 100%">
-                    <thead>
-                        <tr class="colorBlue">
-                            <th style="width: 30%">EAC State</th>
-                            <th style="width: 70%">Withholding Tax Highlights</th>
-                        </tr>
-                    </thead>
-                    <tbody class="contentColor">
-                        @if (stateContainer.FocusCodeProperty == "UG")
-                        {
-                            <tr>
-                                <td class="lightGreen">Uganda</td>
-                                <td>
-                                    <ul>
-                                        <li>Withholding tax is a system of tax collection in which a payer (withholding agent) in respect of specified payments is required to deduct a specified portion of the payment entitled to the payee and remit that portion to the Revenue authority. </li>
-                                        <li>Section 123 (1) of the ITA requires the withholding agent to remit to the URA the amount that was withheld or should have been withheld within 15 days after the month in which the payment subject to withholding tax was made by the withholding agent. </li>
-                                        <li>Some of the payments that attract withholding tax if they are derived by residents or are sourced in Uganda include; payments to resident professionals; natural resource payments; management charges and interest and dividends. </li>
-                                        <li>Any payments of professional fees, consultancy fees or management fees will attract withholding tax at the rate of 6% (residents) and 15% (non-residents). </li>
-                                        <li>Goods or services supplied to the government of Uganda or government institutions also attract WHT at the rate of 6% (residents) and 15% (non-residents supplying services). </li>
-                                        <li>Imports of goods into Uganda also attract WHT at the rate of 6% and this is paid by the importer unless exempted from WHT.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "KY")
-                        {
-                            <tr>
-                                <td class="lightGreen">Kenya </td>
-                                <td>
-                                    <ul>
-                                        <li>Some of the payments that attract withholding tax if they are derived by residents or are sourced in Kenya include; payments to professionals; natural resource payments; management fees and interest and dividends. </li>
-                                        <li>Interest paid by financial institutions is subject to a 15% withholding tax. The rate is 25% for interest paid on bearer certificates and 10% for interest paid on bearer bonds,  these rates apply to payments made to both residents and nonresidents. </li>
-                                        <li>Royalties (and natural resource income) paid to a resident are subject to a 5% withholding tax,  the rate is 20% where paid to a nonresident. </li>
-                                        <li>Technical service fees (professional fees) – A 5% withholding tax is levied on the payment of technical service fees (as well as professional and management fees) where the services are provided by a resident, the rate is 20% where the service provider is a nonresident, unless otherwise provided in an applicable tax treaty. </li>
-                                        <li>Other payments: A 10% withholding tax is levied on the gross proceeds of rental income of nonresidents, but the tax is withheld by agents appointed by the government.  As from 21 September 2018,  a 20% withholding tax is levied on demurrage charges paid to nonresident ship operators and a 5% withholding tax is levied on insurance premiums paid to non-residents. </li>
-                                        <li>A 1.5% digital services tax (“DST”) is applicable on transactions undertaken through the digital marketplace which is appointed by KRA as a DST agent</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                        @if (stateContainer.FocusCodeProperty == "TZ")
-                        {
-                            <tr>
-                                <td class="lightGreen">Tanzania</td>
-                                <td>
-                                    <ul>
-                                        <li>Withholding tax applies to specific payments including  payment that is to be included in calculating the chargeable income of an employee from the employment, payment of investment return including  dividend, interest, natural resource payment, rent or royalty, payment in respect to service fee and contract payments and payment in respect to supply of goods to the government and its institutions.  </li>
-                                        <li>WHT on dividends from other corporations and interest is 10% (both resident and non-resident), royalties and natural resource payments is 15% (both resident and non-resident). </li>
-                                        <li>WHT at 2% on payments for goods supplied to Government and its institutions by any person</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-
-                        @if (stateContainer.FocusCodeProperty == "RW")
-                        {
-                            <tr>
-                                <td class="lightGreen">Rwanda</td>
-                                <td>
-                                    <ul>
-                                        <li>WHT of 15% of the total amount, excluding VAT, is required to be accounted for on payments or other methods of extinguishing an obligation made by resident individuals, including tax-exempt entities. The WHT is due where such payments or other methods of extinguishing an obligation are made to a person not registered with the tax administration or to a registered person who does not have recent income tax declaration. </li>
-                                        <li>Payments or other methods of extinguishing an obligation subject to WHT of 15% are related to the dividends, financial interests, royalties, service fees, including management and technical service fees, except transport services, performance payments and goods sold in Rwanda. </li>
-                                        <li>There is also a WHT of 5% that is applicable on goods imported for commercial use.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-
-                        @if (stateContainer.FocusCodeProperty == "BI")
-                        {
-                            <tr>
-                                <td class="lightGreen">Burundi</td>
-                                <td>
-                                    <ul>
-                                        <li>Payments related to dividends, interest, study, financial, accounting and technical assistance, royalties are subject to 15% withholding tax. </li>
-                                        <li>WHT on imports into Burundi is 3% of CIF </li>
-                                        <li>WHT on public tenders is 4% on VAT exclusive amounts for resident persons and 15% for non residents </li>
-                                        <li>Acquisition of movable and immovable property from non resident to resident persons is subject to 5% WHT for non residents and not applicable to residents selling properties and assets to residents.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-
-                        @if (stateContainer.FocusCodeProperty == "SS")
-                        {
-                            <tr>
-                                <td class="lightGreen">South Sudan</td>
-                                <td>
-                                    <ul>
-                                        <li>South Sudan does not currently have any double tax treaties </li>
-                                        <li>WHT rates are applied to various payments such as dividends, interest, royalties, rent, government contracts. The tax is a final tax for nonresidents. </li>
-                                        <li>Rates are as follows 10% for dividend, interest and royalty payments. WHT on rental payments for non residents is 10% while for residents is 20%, WHT on payments related to government contracts for residents is 20%. </li>
-                                        <li>Advance business profits tax –All other imported goods except food items brought into or that enter South Sudan are subject to an advance payment of business profits tax at a flat rate of 4%. The tax is based on the customs value of the goods and is paid at the port of entry. A taxpayer that is required to file a tax return and that has made an advance payment on imported goods may obtain a credit against the amount of tax owed for the taxable year.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+<section class="single-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Tax Law Overview</h2>
+                
             </div>
         </div>
-    </center>
+    </div>
+</section>
+<center>
+    <div class="col-8">
+        <div>
+            <img src="" />
+        </div>
+        <div>
+            <h5 class="titleColor">Corporation Tax</h5>
+            <table class="table-bordered" style="width: 100%">
+                <thead>
+                    <tr class="colorBlue">
+                        <th style="width: 20%">
+                            EAC State
+                        </th>
+                        <th style="width: 20%">
+                            Corporation Tax Rate
+                        </th>
+                        <th style="width: 60%">
+                            Corporation Tax Highlights
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="contentColor">
+                    @if (stateContainer.FocusCodeProperty == "UG")
+                    {
+                        <tr>
+                            <td class="lightGreen">
+                                Uganda
+                            </td>
+                            <td>
+                                30%
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Solar companies are required to comply with corporation tax obligations. Uganda’s corporation tax regime is governed by the Income Tax Act Cap 340 (ITA). </li>
+                                    <li>A company is a tax resident in Uganda for a year of income: if it is incorporated under Ugandan law; the management and control of its affairs are exercised in Uganda; or the majority of its operations are carried out in Uganda. </li>
+                                    <li>A resident corporate entity is subject to tax on its worldwide income. A non-resident person is subject to tax only on Uganda-sourced income. </li>
+                                    <li>Under the ITA, taxable income includes profits, gains, dividends, interest and non-monetary benefits, advantages or facilities obtained through gainful means etc.  </li>
+                                    <li>Expenditure and losses incurred by a company during the year of income are deductible from taxable income to the extent to which they were incurred in the production of income included in gross income. </li>
+                                    <li>A provisional income tax return must be filed within 6 months of the commencement of the company’s accounting year and an amendment to the return may be submitted by the end of the accounting year if the estimated tax liability is revised.  </li>
+                                    <li>The estimated tax for the year is payable in two installments: before the end of the first 6-month period and; before the company’s year-end.  </li>
+                                    <li>A final return and balance payment is due within 6 months after the company’s year-end.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "KY")
+                    {
+                        <tr>
+                            <td class="lightGreen">
+                                Kenya
+                            </td>
+                            <td>
+                                25%, With branches of foreign companies taxed at a rate of 37.5%
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>A company or similar corporate entity is a tax resident in Kenya: if it is incorporated under Kenyan law; if management and control of its affairs are exercised in Kenya or if the Secretary of Finance declares the entity to be tax resident in a notice published in the Kenya gazette. </li>
+                                    <li>Resident and non-resident corporate entities are subject to tax on all income accruing in or derived from Kenya. </li>
+                                    <li>Income tax is imposed on a company’s gross income, less allowable deductions. In general, expenses must be incurred wholly and exclusively in the production of income and not be capital in nature to be deductible for tax purposes. </li>
+                                    <li>The tax rate for companies with a turnover lower than KES 50million is 1% of the turnover. </li>
+                                    <li>A 1% turnover minimum tax applies where a company’s tax liability is below 1% of its turnover.</li>
+                                    <li>The corporate tax year is based on the calendar year. However, companies may, under Section 27 of the Income Tax Act and with prior approval of the Commissioner, vary their accounting year. </li>
+                                    <li>Filing requirements – the self-assessment returns must be filed within six months of the end of a company’s accounting period. The return must be filed electronically using the online system (iTax).  </li>
+                                    <li>Tax installment payments are due within 20 days of the end of each quarter (except the first installment, which is due in the fourth month of the period), based on the relevant proportion of the estimated current tax or 110% of the tax for the previous year, less previous installments paid and withholding tax deducted at source. The balance of tax, if any, is due four months after the company’s year-end.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "TZ")
+                    {
+                        <tr>
+                            <td class="lightGreen">
+                                Tanzania
+                            </td>
+                            <td>
+                                30%
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>A company is resident in the United Republic of Tanzania: if it is incorporated, formed or established in Tanzania; or has its place of effective management (day to day management) in Tanzania. Subject to certain limited exemptions, Tanzanian resident companies and close corporations (companies) are taxed on their worldwide income as provided on Income Tax Act 2004 section 67. </li>
+                                    <li>Corporation Tax is a tax charged on the taxable incomes, profits from business undertakings and profits from conducting investments (except such dividends which are taxed differently as final taxes). Tax is also paid out of turnover of companies with perpetual unrelieved losses for three consecutive years. </li>
+                                    <li>The final returns shall be submitted within six months from the end of the accounting period. The return must be prepared or certified by a Certified Public Accountant in Public Practice who is approved by the National Board of Accountants and Auditors (NBAA).</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "RW")
+                    {
+                        <tr>
+                            <td class="lightGreen">
+                                Rwanda
+                            </td>
+                            <td>
+                                30%
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>The standard corporate income tax (CIT) rate is 30%. However, micro-enterprise companies (with turnover of less than 12 million Rwanda francs [RWF] in a tax period) pay flat tax amounts, and small businesses (whose turnover is between RWF 12 million and RWF 20 million in a tax period) pay a lump sum tax at the rate of 3% of turnover. </li>
+                                    <li>Rwanda operates both a source and residence-based taxation system. This means that any income that is deemed to be from sources within Rwanda will be liable to tax in Rwanda. In addition, resident entities are taxed on their worldwide income. However, where such income is taxed in another country, a tax credit is allowed, which does not exceed the tax that would have been payable on the same income in Rwanda. </li>
+                                    <li>Non-resident entities are taxed on income sourced in Rwanda through a permanent establishment (PE).</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "BI")
+                    {
+                        <tr>
+                            <td class="lightGreen">
+                                Burundi
+                            </td>
+                            <td>
+                                20%
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>The standard Corporate tax in Burundi is 30%. If a company makes a loss, then taxation is 1% of the annual turnover. Corporation income tax applies on a company’s income generated in Burundi, regardless of its residence. Resident companies are taxed on worldwide income; foreign companies are normally taxed only on Burundi-source income. </li>
+                                    <li>A company is resident in Burundi if it is registered under the laws of Burundi or has its effective management exercised Burundi at any time during the year</li>
+                                    <li>Tax is levied on profits derived by a company from the operation of a business. Capital gains/losses derived from the sale of an asset by a resident company are included in business/investment income and taxed at 30%.</li>
+                                    <li>Losses may be carried forward for five tax periods, but may not be carried back</li>
+                                    <li>The tax year in Burundi is the calendar year. The taxpayer may request a different 12-month period.</li>
+                                    <li>A self-assessment regime applies. The tax return must be filed and the corporate income tax must be paid no later than three months after the end of the applicable year-end (i.e. by 31 March of each year for calendar year taxpayers). Advance tax is payable in three instalments, each equivalent to 25% of the previous year’s corporate income tax liability. The prepayments are payable by 30 June, 30 September and 31 December of the relevant year, with the balance of the corporate income tax for the year payable by the date of submission of the annual corporate income tax return. If the prepayments are higher than the tax payable, the taxpayer can request a refund. Such request must be filed within two months from the submission of the return, and the refund, net of any other outstanding taxes due, must be granted within 60 calendar days from receipt of the application.</li>
+                                    <li>Branches in Burundi also pay corporation tax at a rate of 30% and there is no additional withholding tax on branch remittances.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "SS")
+                    {
+                        <tr>
+                            <td class="lightGreen">
+                                South Sudan
+                            </td>
+                            <td>
+                                Varied based on size of business
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Tax rates for businesses in South Sudan depends on the revenue of the company. </li>
+                                    <li>Small businesses with revenue less than SSP 1 million are taxed at a rate of 10%, medium sized businesses with revenue between SSP 1 million and SSP 30 million are taxed at a rate of 20% and large businesses with revenue exceeding SSP 30 million are taxed at a rate of 25%. </li>
+                                    <li>Resident companies are liable to tax on their worldwide income; non-resident companies pay tax only on South Sudan-source profits. </li>
+                                    <li>A company, partnership or other entity established in South Sudan or that has its place of effective management in South Sudan is a resident. </li>
+                                    <li>Taxable income generally consists of worldwide income for resident companies (and business profits derived from South Sudan for non-resident companies), less expenditure incurred wholly and exclusively in the production of the income for the year. Dividends received from a resident company are considered South Sudan-source income and are included in business profits. However, dividends are exempt from taxation as business profits if tax has already been withheld on the dividends. Capital gains are considered South Sudansource income and are included in the taxable income subject to corporate tax </li>
+                                    <li>
+                                        Losses may be carried forward and set off against taxable income for up to five years. The carryback of losses is not permitted.
+                                    </li>
+                                    <li>A branch of a foreign company is subject to the same tax rate as a domestic subsidiary. There is no branch profits tax</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <br />
+        <div>
+            <h5 class="titleColor">Value Added Tax(VAT)</h5>
+            <table class="table-bordered" style="width: 100%">
+                <thead>
+                    <tr class="colorBlue">
+                        <th style="width: 20%">EAC State</th>
+                        <th style="width: 20%">VAT Rate</th>
+                        <th style="width: 60%">VAT Highlights</th>
+                    </tr>
+                </thead>
+                <tbody class="contentColor">
+                    @if (stateContainer.FocusCodeProperty == "UG")
+                    {
+                        <tr>
+                            <td class="lightGreen">Uganda</td>
+                            <td>18% </td>
+                            <td>
+                                <ul>
+                                    <li>VAT in Uganda is accounted for on accrual basis unless the tax payer gets permission from the commissioner to account for VAT on a cash basis. </li>
+                                    <li>Under the VAT Act, a supply of goods or services takes place on the earliest of the date on which; the goods are delivered or made available; or the performance of the service is completed; payment for the goods or services is made; or a tax invoice is issued. </li>
+                                    <li>A taxable person is allowed input VAT on taxable supplies made to the person and import of goods made by that person. </li>
+                                    <li>When a tax payer deals in the supply of both taxable and exempt supplies (like is the case with many solar companies), they are required to apportion the Input credit every month when filing a return and also make an end year adjustment at the end of each calendar year. </li>
+                                    <li>All taxable persons are required to file a return for every tax period (calendar month) and pay tax (if any) within 15 days after the end of the month. </li>
+                                    <li>Exempt Solar Supplies - Section 20 of the VATA states that an import of goods is an exempt import if the goods are exempt from customs duty under the Fifth Schedule of the EAC CMA 2004 except compact fluorescent bulbs with a power connecting cap at the end, and lamps and bulbs made from Light Emitting Diodes (LED) technology for domestic and industrial use or would be exempt had they been supplied in Uganda. </li>
+                                    <li>
+                                        Section 19 of the VATA, Cap 349 provides that a supply of goods or services is exempt if it is specified under the Second Schedule of the Act. Some of the goods in the schedule of the VAT Act relating to the solar industry include the following
+                                        <ul>
+                                            <li>The supply of photosensitive semiconductor devices, including photovoltaic devices, whether or not assembled in modules or made into panels; light emitting diodes, solar water heaters, solar refrigerators and solar cookers.</li>
+                                            <li>The supply of deep cycle batteries, composite lanterns and raw materials for the manufacture of deep cycle batteries and composite lanterns. </li>
+                                            <li>The supply of any goods and services to the contractors and subcontractors of solar power.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "KY")
+                    {
+                        <tr>
+                            <td class="lightGreen">Kenya</td>
+                            <td>14%* </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        In September 2016 the VAT Act 2013 was amended through the Finance Act 2016 to include provisions relating to the VAT treatment of solar equipment and accessories as follows:
+                                        <ul>
+                                            <li>Item 45 of the Part I of the First Schedule to the VAT Act 2013 provides VAT exemption on supply of “specialized solar equipment and accessories, including solar water heaters and deep cycle sealed batteries which exclusively use or store solar power”. </li>
+                                            <li>Item 48 of the same schedule which introduced VAT exemption on “inputs or raw materials supplied to solar equipment manufacturers for manufacture of solar equipment or deep cycle sealed batteries which exclusively use or store solar power as approved from time to time by the Cabinet Secretary for the National Treasury, upon recommendation by the Cabinet Secretary responsible for energy and petroleum”. </li>
+                                        </ul>
+                                    </li>
+                                    <li>The amendment to the Act, though welcomed by the industry, created a lack of clarity on the scope of the exemption. The phrase “specialized solar equipment and accessories which exclusively use or store solar power” was open to subjective interpretations as technological innovation continued to introduce new solar equipment to the market that exclusively used solar power. The industry adopted a wider interpretation and considered equipment such as solar powered TVs, radios, refrigerators, water pumps, cookers etc. exclusively designed to be powered by solar PV should be covered under the exemption. On the other hand, Kenya Revenue Authority (“KRA”) adopted the interpretation that equipment that could ‘technically’ only be powered by solar PV could qualify for exemption, thereby excluding any equipment or accessories that could potentially be powered by the grid (e.g. solar fridges, solar lanterns with a USB charging port etc)..), this difference in the interpretation resulted in the need for an amendment. </li>
+                                    <li>In September 2018, the First Schedule to the Kenyan VAT act amended item 45 of the act by removing of the word ‘’accessories’’ to limit the scope of VAT exemption to “Specialized equipment for the development and generation of solar and wind energy, including deep cycle batteries which use or store solar power”, thereby harmonizing the Kenya VAT exemption with the 2016 provisions of EACCMA. This effectively meant that accessories or appliances (e.g. TV, radio etc.), which use solar power would not qualify for exemption.  </li>
+                                    <li>The VAT return and any related payment are due by the 20th day of the following month. Agents appointed by the tax authorities are required to deduct 2% of the 14% VAT and remit the withheld VAT by the 20th day of the following month</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "TZ")
+                    {
+                        <tr>
+                            <td class="lightGreen">Tanzania</td>
+                            <td>18%</td>
+                            <td>
+                                <ul>
+                                    <li>A taxable person is allowed input VAT on taxable supplies made to the person and import of goods made by that person. </li>
+                                    <li>Claiming of input tax on entertainment, sporting social or recreational clubs or associations and spare parts and repair or maintenance costs in respect of passenger vehicles is disallowed for VAT purposes. </li>
+                                    <li>Input tax claim time limit is maintained at six months. However, this time limit starts to run not only by reference to the date of the relevant supporting documentation (e.g. tax invoice, fiscal receipt etc.) but also by reference to the date of the time of supply. </li>
+                                    <li>Exempt Solar Supplies - VAT Act 2016 exempts the supply of solar panels, modules, solar charger controllers, solar inverter, solar lights, vacuum tube solar collectors and solar batteries from tax. </li>
+                                    <li>Currently VAT registered traders are supposed to submit returns to TRA online or in paper form. </li>
+                                    <li>VAT is payable on 20th day of the following month of the business that is a due date of submitting the return. If the 20th day falls on the Saturdays, Sunday, or public holiday the return shall be lodge on the first working day following the Saturdays, Sunday or Public day.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "RW")
+                    {
+                        <tr>
+                            <td class="lightGreen">Rwanda</td>
+                            <td>18%</td>
+                            <td>
+                                <ul>
+                                    <li>Suppliers who provide zero-rated services or goods are entitled to recover input VAT incurred in making the supply. This is unlike exempt supplies, where input VAT recovery is not allowed. Therefore, zero rating is preferable to exemption. </li>
+                                    <li>Exempt Solar Supplies - exempt for VAT purposes means that no output VAT is charged on the goods or services, and no input VAT can be claimed. The list of exempt goods and services are detailed in Article 6 of Law N°37/2012 of 09/11/2012. Among these includes the energy supply equipment a) energy saving lamps; b) solar water-heaters; </li>
+                                    <li>The VAT returns and relevant payment are due to the Rwanda Revenue Authority (RRA) on a monthly basis by the 15th day of the following month. However, taxpayers with annual turnover of RWF 200 million or below may elect to file VAT returns or make payments on a quarterly or monthly basis.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "BI")
+                    {
+                        <tr>
+                            <td class="lightGreen">Burundi</td>
+                            <td>18%</td>
+                            <td>
+                                <ul>
+                                    <li>VAT is applicable as follows 18% on ordinary goods and services; 10% on food products and farming inputs; 0% on exports and international transport </li>
+                                    <li>If a tax payer gets services from a person who is outside Burundi, the taxpayer is considered as if he/she has delivered taxable services and has received an output tax from that person residing outside Burundi as such must self-charge VAT on the payment made to the non-resident supplier and remit the VAT.</li>
+                                    <li>Declarations are made monthly, to be filed by the 15th day of the month following the VAT collection period. Payment is to be made when the declaration is filed. VAT on imports is paid at the time when the goods are released for consumption, as are customs duties.</li>
+                                    <li>The person reaches the threshold for registration in a given period if the total value of supplies of goods and services made, or to be made by the person during that period or part of this period is equal to or above one hundred million Burundian francs (100,000,000 Bif). The voluntary registration threshold is Bif twenty-four million (24,000,000 BIF)</li>
+                                    <li>If all goods or services supplied by a taxpayer during a value added tax period are taxable goods and services, the taxpayer is allowed a credit of the input tax paid in respect of taxable acquisitions or taxable imported goods during the tax period for the purposes of selling or delivering taxable goods and services. If a taxpayer imported goods part of which are exempted while others are taxable then the sum of input tax to be claimed will be the portion of the tax paid for the taxable goods in relation to the taxable business. No input tax is allowed if goods purchased in the country or taxable imported goods or services are for non-business use as well as for housing expenses or accommodation, reception, catering and travel expenses. </li>
+                                    <li>A registered person making supplies at the zero rate shall in all respects be treated as making a taxable supply</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
 
-    @code {
+                    @if (stateContainer.FocusCodeProperty == "SS")
+                    {
+                        <tr>
+                            <td class="lightGreen">South Sudan</td>
+                            <td>18%</td>
+                            <td>
+                                <ul>
+                                    <li>South Sudan levies a sales tax rather than a VAT at a rate of 18% as per Taxation Act 2016 </li>
+                                    <li>The sales tax applies to manufacturers, importers and service providers in South Sudan. </li>
+                                    <li>Sales tax on imported goods is charged on all imports of goods into the Republic of South Sudan and the value on which the tax is assessed is the customs value, plus excise duty and customs duty.  </li>
+                                    <li>Small enterprises with revenue of less than SSP 1 million are zero rated </li>
+                                    <li>Input VAT is not allowed in South Sudan </li>
+                                    <li>Manufacturers and service providers are required to file a return and pay the tax not later than the 15th day of every month for the tax collected in the previous month. Persons importing goods are required to pay the sales tax due prior to importation or no later than the time of import at the border.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
 
-    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <br />
+        <div>
+            <h5 class="titleColor">Withholding Tax</h5>
+            <table class="table-bordered" style="width: 100%">
+                <thead>
+                    <tr class="colorBlue">
+                        <th style="width: 30%">EAC State</th>
+                        <th style="width: 70%">Withholding Tax Highlights</th>
+                    </tr>
+                </thead>
+                <tbody class="contentColor">
+                    @if (stateContainer.FocusCodeProperty == "UG")
+                    {
+                        <tr>
+                            <td class="lightGreen">Uganda</td>
+                            <td>
+                                <ul>
+                                    <li>Withholding tax is a system of tax collection in which a payer (withholding agent) in respect of specified payments is required to deduct a specified portion of the payment entitled to the payee and remit that portion to the Revenue authority. </li>
+                                    <li>Section 123 (1) of the ITA requires the withholding agent to remit to the URA the amount that was withheld or should have been withheld within 15 days after the month in which the payment subject to withholding tax was made by the withholding agent. </li>
+                                    <li>Some of the payments that attract withholding tax if they are derived by residents or are sourced in Uganda include; payments to resident professionals; natural resource payments; management charges and interest and dividends. </li>
+                                    <li>Any payments of professional fees, consultancy fees or management fees will attract withholding tax at the rate of 6% (residents) and 15% (non-residents). </li>
+                                    <li>Goods or services supplied to the government of Uganda or government institutions also attract WHT at the rate of 6% (residents) and 15% (non-residents supplying services). </li>
+                                    <li>Imports of goods into Uganda also attract WHT at the rate of 6% and this is paid by the importer unless exempted from WHT.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "KY")
+                    {
+                        <tr>
+                            <td class="lightGreen">Kenya </td>
+                            <td>
+                                <ul>
+                                    <li>Some of the payments that attract withholding tax if they are derived by residents or are sourced in Kenya include; payments to professionals; natural resource payments; management fees and interest and dividends. </li>
+                                    <li>Interest paid by financial institutions is subject to a 15% withholding tax. The rate is 25% for interest paid on bearer certificates and 10% for interest paid on bearer bonds,  these rates apply to payments made to both residents and nonresidents. </li>
+                                    <li>Royalties (and natural resource income) paid to a resident are subject to a 5% withholding tax,  the rate is 20% where paid to a nonresident. </li>
+                                    <li>Technical service fees (professional fees) – A 5% withholding tax is levied on the payment of technical service fees (as well as professional and management fees) where the services are provided by a resident, the rate is 20% where the service provider is a nonresident, unless otherwise provided in an applicable tax treaty. </li>
+                                    <li>Other payments: A 10% withholding tax is levied on the gross proceeds of rental income of nonresidents, but the tax is withheld by agents appointed by the government.  As from 21 September 2018,  a 20% withholding tax is levied on demurrage charges paid to nonresident ship operators and a 5% withholding tax is levied on insurance premiums paid to non-residents. </li>
+                                    <li>A 1.5% digital services tax (“DST”) is applicable on transactions undertaken through the digital marketplace which is appointed by KRA as a DST agent</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    @if (stateContainer.FocusCodeProperty == "TZ")
+                    {
+                        <tr>
+                            <td class="lightGreen">Tanzania</td>
+                            <td>
+                                <ul>
+                                    <li>Withholding tax applies to specific payments including  payment that is to be included in calculating the chargeable income of an employee from the employment, payment of investment return including  dividend, interest, natural resource payment, rent or royalty, payment in respect to service fee and contract payments and payment in respect to supply of goods to the government and its institutions.  </li>
+                                    <li>WHT on dividends from other corporations and interest is 10% (both resident and non-resident), royalties and natural resource payments is 15% (both resident and non-resident). </li>
+                                    <li>WHT at 2% on payments for goods supplied to Government and its institutions by any person</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+
+                    @if (stateContainer.FocusCodeProperty == "RW")
+                    {
+                        <tr>
+                            <td class="lightGreen">Rwanda</td>
+                            <td>
+                                <ul>
+                                    <li>WHT of 15% of the total amount, excluding VAT, is required to be accounted for on payments or other methods of extinguishing an obligation made by resident individuals, including tax-exempt entities. The WHT is due where such payments or other methods of extinguishing an obligation are made to a person not registered with the tax administration or to a registered person who does not have recent income tax declaration. </li>
+                                    <li>Payments or other methods of extinguishing an obligation subject to WHT of 15% are related to the dividends, financial interests, royalties, service fees, including management and technical service fees, except transport services, performance payments and goods sold in Rwanda. </li>
+                                    <li>There is also a WHT of 5% that is applicable on goods imported for commercial use.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+
+                    @if (stateContainer.FocusCodeProperty == "BI")
+                    {
+                        <tr>
+                            <td class="lightGreen">Burundi</td>
+                            <td>
+                                <ul>
+                                    <li>Payments related to dividends, interest, study, financial, accounting and technical assistance, royalties are subject to 15% withholding tax. </li>
+                                    <li>WHT on imports into Burundi is 3% of CIF </li>
+                                    <li>WHT on public tenders is 4% on VAT exclusive amounts for resident persons and 15% for non residents </li>
+                                    <li>Acquisition of movable and immovable property from non resident to resident persons is subject to 5% WHT for non residents and not applicable to residents selling properties and assets to residents.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+
+                    @if (stateContainer.FocusCodeProperty == "SS")
+                    {
+                        <tr>
+                            <td class="lightGreen">South Sudan</td>
+                            <td>
+                                <ul>
+                                    <li>South Sudan does not currently have any double tax treaties </li>
+                                    <li>WHT rates are applied to various payments such as dividends, interest, royalties, rent, government contracts. The tax is a final tax for nonresidents. </li>
+                                    <li>Rates are as follows 10% for dividend, interest and royalty payments. WHT on rental payments for non residents is 10% while for residents is 20%, WHT on payments related to government contracts for residents is 20%. </li>
+                                    <li>Advance business profits tax –All other imported goods except food items brought into or that enter South Sudan are subject to an advance payment of business profits tax at a flat rate of 4%. The tax is based on the customs value of the goods and is paid at the port of entry. A taxpayer that is required to file a tax return and that has made an advance payment on imported goods may obtain a credit against the amount of tax owed for the taxable year.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</center>
+
+@code {
+
+}
